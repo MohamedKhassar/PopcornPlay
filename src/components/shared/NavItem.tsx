@@ -5,7 +5,7 @@ import { cn } from "../../lib/cn"
 const NavItem = ({ label, href,Icon }: NavItemProps) => {
     const {pathname}=useLocation()
     return (
-        <li className="inline-block max-md:hover:bg-slate-600/30 backdrop-blur-2xl p-3 rounded-lg duration-200">
+        <li className="inline-block max-lg:hover:bg-slate-600/30 backdrop-blur-2xl p-3 rounded-lg duration-200">
             <Link to={href} className={cn("lg:text-lg text-xs lg:font-semibold lg:hover:text-blue-700 capitalize duration-300 text-center text-slate-500",
                 pathname === href ? "text-blue-700" : "text-slate-500"
             )}><Icon className={cn("lg:hidden place-self-center size-6",
