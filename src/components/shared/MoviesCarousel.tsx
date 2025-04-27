@@ -1,14 +1,14 @@
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Pagination, EffectFade, Autoplay} from 'swiper/modules';
 
-import 'swiper/swiper-bundle.css';
-import { MovieType } from "../../lib/types";
+
 import { BsPlayCircleFill } from "react-icons/bs";
 import { useEffect } from "react";
 import { fetchGenres } from "../../features/genreSlice";
 import { useAppDispatch, useAppSelector } from "../../lib/hooks";
-const MoviesCarousel = ({ movies }: { movies: MovieType[] }) => {
+const MoviesCarousel = () => {
     const dispatch = useAppDispatch()
+    const { movies } = useAppSelector(state => state.movies)
     const genres=useAppSelector(state=>state.genres.genres)
     useEffect(() => {
         dispatch(fetchGenres())
