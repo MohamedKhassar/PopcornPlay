@@ -18,3 +18,5 @@ export const navLinks:NavItemProps[] = [
         Icon:LuTv
     }
 ]
+
+export const VITE_APP_API_KEY:string=import.meta.env.VITE_APP_API_KEY

@@ -1,10 +1,9 @@
-import { Swiper, SwiperSlide } from "swiper/react";
-import "swiper/css";
-import "swiper/css/pagination";
-import 'swiper/css/effect-fade';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { Pagination, EffectFade, Autoplay} from 'swiper/modules';
+
+import 'swiper/swiper-bundle.css';
 import { MovieType } from "../../lib/types";
 import { BsPlayCircleFill } from "react-icons/bs";
-import { EffectFade, Pagination, Autoplay } from "swiper/modules";
 import { useEffect } from "react";
 import { fetchGenres } from "../../features/genreSlice";
 import { useAppDispatch, useAppSelector } from "../../lib/hooks";

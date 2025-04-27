@@ -3,6 +3,7 @@ import { useEffect, useState } from "react"
 import { MovieType } from "../../lib/types"
 import { LuLoaderCircle } from "react-icons/lu"
 import MoviesCarousel from "../shared/MoviesCarousel"
+import { VITE_APP_API_KEY } from "../../lib/data"
 
 const Hero = () => {
     const [isLoading, setIsLoading] = useState(false)
@@ -12,7 +13,7 @@ const Hero = () => {
             setIsLoading(true)
             const data = await axios.get("https://api.themoviedb.org/3/movie/popular?language=en-US", {
                 params: {
-                    api_key: "eae7a031b92c3144dfadfc41445a781c"
+                    api_key: VITE_APP_API_KEY
                 }
             })
             setMovies(data.data.results)

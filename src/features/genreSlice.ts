@@ -3,6 +3,7 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 import { GenreType } from "../lib/types";
+import { VITE_APP_API_KEY } from "../lib/data";
 
 const initialState: {
   genres: GenreType[];
@@ -18,7 +19,7 @@ export const fetchGenres = createAsyncThunk("genres/fetchGenres", async () => {
     "https://api.themoviedb.org/3/genre/movie/list",
     {
       params: {
-        api_key: "eae7a031b92c3144dfadfc41445a781c",
+        api_key: VITE_APP_API_KEY,
       },
     }
   );
