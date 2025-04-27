@@ -20,6 +20,22 @@ const Hero = () => {
         fetchData()
         setIsLoading(false)
     }, [])
+
+    useEffect(()=>{
+        document.addEventListener("keydown",(e)=>{
+            if(e.key==="f"||e.key==="F"){
+                if(document.fullscreenElement){
+                    document.exitFullscreen()
+                }else{
+                    document.body.requestFullscreen()
+                }
+            }else if(e.key==="Escape"){
+                if(document.fullscreenElement){
+                    document.exitFullscreen()
+                }
+            }
+        })
+    },[])
     return (
         <main>
             {
