@@ -1,9 +1,10 @@
 import Layout from "./components/layout/Layout"
+import Hero from "./components/sections/Hero"
 
 const App = () => {
   return (
     <Layout>
-      hh
+      <Hero />
     </Layout>
   )
 }

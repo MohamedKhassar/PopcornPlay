@@ -9,3 +9,18 @@
 body{
   @apply bg-gray-900 text-white font-Poppins;
 }
+
+.swiper-pagination{
+  @apply !mb-2  max-md:hidden;
+}
+
+.swiper-pagination-bullet {
+  @apply !place-self-end !size-3 !bg-gray-300/30 !opacity-100;
+}
+
+.swiper-pagination-bullet-active {
+  @apply !size-3 !bg-blue-800 !opacity-100 transition-colors duration-200;
+}
+.swiper-pagination-bullet-active:hover {
+  @apply  !bg-blue-900 ;
+}

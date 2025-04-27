@@ -11,7 +11,7 @@ const Navbar = () => {
     const {isOpen}=useAppSelector(state=>state.menu)
     const dispatch=useAppDispatch()
     return (
-        <header className="bg-slate-900/10 backdrop-blur-3xl py-7 flex items-center justify-around mx-3">
+        <header className="bg-slate-900/10 backdrop-blur-sm lg:py-4 py-2 flex items-center justify-around fixed w-full z-50">
             <Link to={""} className="flex items-center">
                 <img src={logo} alt={logo} loading="lazy" className="size-15" />
                 <h1 className="text-2xl font-extrabold hidden lg:block">Popcorn<span className="text-blue-600">Play</span></h1>
@@ -19,7 +19,7 @@ const Navbar = () => {
             <SearchInput />
             <nav>
                 <NavLinks className="max-lg:hidden" />
-                <button className="p-2.5 bg-blue-700 rounded-xl active:scale-95 duration-200 hover:bg-blue-800 lg:hidden cursor-pointer active:bg-blue-800 outline-none" onClick={()=>dispatch(toggleMenu())}>
+                <button className="p-2.5 bg-blue-700 rounded-xl active:scale-95 duration-200 hover:bg-blue-800 lg:hidden cursor-pointer active:bg-blue-800 outline-none mx-3" onClick={()=>dispatch(toggleMenu())}>
                     {
                         isOpen
                             ?
