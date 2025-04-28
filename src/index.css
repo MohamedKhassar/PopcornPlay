@@ -5,11 +5,6 @@
   --font-Poppins:"Poppins",sans-serif;
   --font-Inter:"Inter",sans-serif;
 }
-
-body{
-  @apply bg-gray-900 text-white font-Poppins;
-}
-
 .swiper-pagination{
   @apply !mb-2  max-md:hidden;
 }

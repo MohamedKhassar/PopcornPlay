@@ -4,12 +4,18 @@ import Card from "./Card";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation } from "swiper/modules";
 import { useRef } from "react";
+import useMediaQuery from "../../features/UseMediaQuery";
 
 const MovieList = ({ category, movies }: { category: string, movies: MovieType[] }) => {
   const nextRef = useRef(null);
   const prevRef = useRef(null);
+  const isSmallScreen = useMediaQuery("(max-width: 780px)"); // Tailwind's `sm` breakpoint
+  const isMediumScreen = useMediaQuery("(max-width: 1400px)"); // Tailwind's `md` breakpoint
+
+  const slidesToScroll = isSmallScreen ? 2 : isMediumScreen ? 4 : 5;
+
   return (
-    <main className="max-w-screen-2xl mx-auto mt-20 space-y-3">
+    <main className="max-w-screen-2xl lg:mx-auto mx-5 lg:mt-20 mt-10 space-y-3">
       <section className="flex justify-between items-center">
         <div className="flex flex-col">
           <h1 className="text-2xl text-slate-400 font-extrabold">{category}</h1>
@@ -21,15 +27,16 @@ const MovieList = ({ category, movies }: { category: string, movies: MovieType[]
         </div>
       </section>
       <Swiper
-        slidesPerView={5}
-        spaceBetween={20}
+        slidesPerView={slidesToScroll}
+        spaceBetween={slidesToScroll === 5 ? 20 : (slidesToScroll === 4 ? 10 : 0)
+        }
         navigation={{
           nextEl: nextRef.current,
           prevEl: prevRef.current,
         }}
         loop
         aria-hidden
-        className="flex rounded-xl"
+        className="flex rounded-xl justify-center items-center"
         modules={[Navigation]}
       >
         {
