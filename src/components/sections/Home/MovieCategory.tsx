@@ -56,17 +56,17 @@ const MovieCategory = () => {
   }, [])
   return (
     <div>
-      <div className="mx-auto max-w-[104rem] gap-4 text-slate-500 mt-20 mb-10 flex items-center">
-        <h1 className="text-5xl">Movie Lists</h1>
-        <LuFilm className="size-9" />
+      <div className="mx-auto lg:max-w-[104rem] max-w-sm lg:gap-4 gap-2 text-slate-500 lg:mt-20 lg:mb-10 mt-10 mb-5 flex items-center">
+        <h1 className="lg:text-5xl md:text-3xl text-2xl font-extrabold">Movie Lists</h1>
+        <LuFilm className="lg:size-9 size-5" />
       </div>
       <MovieList movies={movies} category="Popular Movies" />
       <MovieList movies={topRated} category="top rated Movies" />
       <MovieList movies={nowPlaying} category="Now Playing (In Theaters)" />
       <MovieList movies={upcoming} category="Upcoming Movies" />
-      <div className="mx-auto max-w-[104rem] gap-4 text-slate-500 mt-20 mb-10 flex items-center">
-        <h1 className="text-5xl">TV Series Lists</h1>
-        <BiTv className="size-9" />
+      <div className="mx-auto lg:max-w-[104rem] max-w-sm lg:gap-4 gap-2 text-slate-500 lg:mt-20 lg:mb-10 mt-10 mb-5 flex items-center">
+        <h1 className="lg:text-5xl md:text-3xl text-2xl font-extrabold">TV Series Lists</h1>
+        <BiTv className="lg:size-9 size-5" />
       </div>
       {/* list of series categories */}
     </div>
