@@ -30,16 +30,14 @@ const MoviesCarousel = () => {
             {
                 movies.slice(0, 8).map((movie, index) => (
                     <SwiperSlide key={index} className="relative">
-                        <img src={`https://image.tmdb.org/t/p/original${movie?.backdrop_path}`} className="object-center object-cover size-full" alt={movie?.title} />
+                        <img loading='lazy' src={`https://image.tmdb.org/t/p/original${movie?.backdrop_path}`} className="object-center object-cover size-full" alt={movie?.title} />
                         <div className=" bg-gradient-to-t from-black/50 from-80% to-transparent inset-0 absolute flex items-end px-10 xl:py-20 py-10 h-full">
                             <div className="flex gap-4 xl:max-w-3xl lg:max-w-xl max-w-fit items-center">
                                 <img src={`https://image.tmdb.org/t/p/original${movie?.poster_path}`} className="w-70 max-lg:hidden rounded-2xl" loading="lazy" alt="" />
                                 <div className="flex flex-col justify-center gap-4">
                                     <div className="flex justify-between items-start gap-4">
                                         <h1 className="md:text-3xl text-xl text-white font-extrabold">{movie?.original_title}</h1>
-                                        <span className={`flex justify-center items-center rounded-full md:min-h-10 md:min-w-10 min-w-8 min-h-8 md:text-base text-sm text-black font-extrabold ${movie?.vote_average <= 4 ? 'bg-yellow-400' :
-                                            movie?.vote_average < 7 ? 'bg-lime-400' :
-                                                'bg-green-500'}`}>{movie?.vote_average.toFixed(1)}</span>
+                                        <span className={`flex justify-center items-center rounded-full md:min-h-10 md:min-w-10 min-w-8 min-h-8 md:text-base text-sm text-black font-extrabold ${movie.vote_average >= 7? 'bg-green-500':movie.vote_average >= 4?'bg-yellow-400': 'bg-red-500'}`}>{movie?.vote_average.toFixed(1)}</span>
                                     </div>
                                     <p className="text-sm text-gray-400">
                                         {movie?.overview}
