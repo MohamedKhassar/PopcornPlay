@@ -16,10 +16,10 @@ const MovieList = ({ category, movies }: { category: string, movies: MovieType[]
   const slidesToScroll = isXSmallScreen ? 1 : isSmallScreen ? 2 : isMediumScreen ? 4 : 5;
 
   return (
-    <main className="max-w-screen-2xl lg:mx-auto mx-5 lg:mt-20 my-10 space-y-3">
+    <main className="max-w-screen-2xl lg:mx-auto mx-5 lg:mb-20 mb-10 space-y-3">
       <section className="flex justify-between items-center">
         <div className="flex flex-col">
-          <h1 className="text-2xl text-slate-400 font-extrabold">{category}</h1>
+          <h1 className="text-2xl text-slate-400 font-extrabold capitalize">{category}</h1>
           <span className="w-full bg-slate-500 h-0.5 rounded-full"></span>
         </div>
         <div className="flex gap-4 items-start">
