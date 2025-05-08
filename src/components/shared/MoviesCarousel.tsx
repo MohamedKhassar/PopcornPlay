@@ -8,7 +8,7 @@ import { fetchGenres } from "../../features/genreSlice";
 import { useAppDispatch, useAppSelector } from "../../lib/hooks";
 const MoviesCarousel = () => {
     const dispatch = useAppDispatch()
-    const { movies } = useAppSelector(state => state.movies)
+    const { popularMovies } = useAppSelector(state => state.movies.movies)
     const genres=useAppSelector(state=>state.genres.genres)
     useEffect(() => {
         dispatch(fetchGenres())
@@ -28,7 +28,7 @@ const MoviesCarousel = () => {
             modules={[Pagination, EffectFade, Autoplay]} effect="fade" loop
             className="h-screen">
             {
-                movies.slice(0, 8).map((movie, index) => (
+                popularMovies.slice(0, 8).map((movie, index) => (
                     <SwiperSlide key={index} className="relative">
                         <img loading='lazy' src={`https://image.tmdb.org/t/p/original${movie?.backdrop_path}`} className="object-center object-cover size-full" alt={movie?.title} />
                         <div className=" bg-gradient-to-t from-black/50 from-80% to-transparent inset-0 absolute flex items-end px-10 xl:py-20 py-10 h-full">

@@ -11,7 +11,7 @@ const Card = ({ movie }: { movie: MovieType }) => {
     const colorClass = getRatingColor(movie.vote_average);
     const nav = useNavigate()
     return (
-        <div onClick={() => nav(`/movie/${movie.id}`)} className="cursor-pointer space-y-5 hover:bg-slate-600/30 rounded-2xl p-3 duration-200 overflow-hidden lg:max-w-full max-w-80 mx-auto">
+        <div onClick={() => nav(`/movie/${movie.id}`)} className="cursor-pointer space-y-5 hover:bg-slate-600/30 rounded-2xl p-3 duration-200 overflow-hidden lg:max-w-full lg:min-w-full min-w-80 max-w-80 mx-auto">
             <div className='relative'>
                 <div className='flex justify-center items-center group overflow-hidden rounded-xl
                 '>
