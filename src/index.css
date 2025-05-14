@@ -40,3 +40,7 @@
 ::-webkit-scrollbar-thumb{
   @apply bg-blue-800 rounded-full;
 }
+
+html{
+  @apply scroll-smooth;
+}

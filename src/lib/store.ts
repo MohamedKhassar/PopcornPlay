@@ -2,12 +2,14 @@ import { configureStore } from '@reduxjs/toolkit';
 import menuReducer from '../features/menuSlice';
 import genreSlice from '../features/genreSlice';
 import movieSlice from '../features/movieSlice.tsx';
+import seriesSlice from '../features/SeriesSlice.tsx';
 
 export const store = configureStore({
   reducer: {
     menu: menuReducer,
     genres:genreSlice,
-    movies:movieSlice
+    movies:movieSlice,
+    series:seriesSlice
   },
 });
 

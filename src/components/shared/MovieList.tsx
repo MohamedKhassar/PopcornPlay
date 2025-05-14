@@ -5,13 +5,15 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation } from "swiper/modules";
 import { useRef } from "react";
 import useMediaQuery from "../../features/UseMediaQuery";
+import { useNavigate } from "react-router-dom";
 
-const MovieList = ({ category, movies }: { category: string, movies: MovieType[] }) => {
+const MovieList = ({ category, movies, type }: { category: string, type: string, movies: MovieType[] }) => {
   const nextRef = useRef(null);
   const prevRef = useRef(null);
   const isXSmallScreen = useMediaQuery("(max-width: 580px)"); // Tailwind's `sm` breakpoint
   const isSmallScreen = useMediaQuery("(max-width: 780px)"); // Tailwind's `sm` breakpoint
   const isMediumScreen = useMediaQuery("(max-width: 1400px)"); // Tailwind's `md` breakpoint
+  const nav = useNavigate()
 
   const slidesToScroll = isXSmallScreen ? 1 : isSmallScreen ? 2 : isMediumScreen ? 4 : 5;
 
@@ -34,7 +36,6 @@ const MovieList = ({ category, movies }: { category: string, movies: MovieType[]
           nextEl: nextRef.current,
           prevEl: prevRef.current,
         }}
-        loop
         className="flex rounded-xl justify-center items-center"
         modules={[Navigation]}
         effect="fade"
@@ -49,7 +50,7 @@ const MovieList = ({ category, movies }: { category: string, movies: MovieType[]
             :
             movies.map((movie, index) => (
               <SwiperSlide>
-                <Card movie={movie} key={index} />
+                <Card onClick={() => nav(`/${type}/${movie.id}`)} movie={movie} key={index} />
               </SwiperSlide>
             ))
 

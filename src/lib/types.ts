@@ -1,9 +1,10 @@
+import { HTMLAttributes } from "react";
 import { IconType } from "react-icons";
 
 export type NavItemProps = {
   label: string;
   href: string;
-  Icon:IconType
+  Icon: IconType;
 };
 
 export type MovieType = {
@@ -21,9 +22,14 @@ export type MovieType = {
   video: boolean;
   vote_average: number;
   vote_count: number;
-}
+  name:string
+};
 
-export type GenreType={
+export type GenreType = {
   id: number;
   name: string;
+};
+
+export interface CardProps extends HTMLAttributes<HTMLDivElement> {
+  movie: MovieType;
 }

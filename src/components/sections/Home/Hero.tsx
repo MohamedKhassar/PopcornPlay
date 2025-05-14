@@ -2,6 +2,7 @@ import { useEffect } from "react"
 import MoviesCarousel from "../../shared/MoviesCarousel"
 import { useAppDispatch, useAppSelector } from "../../../lib/hooks"
 import { fetchNowPlayingMovies, fetchPopularMovies, fetchTopRatedMovies, fetchUpcomingMovies } from "../../../features/movieSlice"
+import { fetchOnTheAirSeries, fetchPopularSeries, fetchTopRatedSeries } from "../../../features/SeriesSlice"
 const Hero = () => {
     const { status } = useAppSelector(state => state.movies)
     const dispatch = useAppDispatch()
@@ -11,6 +12,9 @@ const Hero = () => {
         dispatch(fetchTopRatedMovies())
         dispatch(fetchUpcomingMovies())
         dispatch(fetchNowPlayingMovies())
+        dispatch(fetchPopularSeries())
+        dispatch(fetchTopRatedSeries())
+        dispatch(fetchOnTheAirSeries())
     }, [])
 
     return (

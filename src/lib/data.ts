@@ -4,17 +4,17 @@ import { LuFilm, LuTv } from "react-icons/lu"
 export const navLinks:NavItemProps[] = [
     {
         label: "board",
-        href: "/",
+        href: "/#",
         Icon:GoHomeFill
     },
     {
         label: "movies",
-        href: "/movies",
+        href: "/#movies",
         Icon:LuFilm
     },
     {
         label: "series",
-        href: "/series",
+        href: "/#series",
         Icon:LuTv
     }
 ]
