@@ -17,7 +17,7 @@ const MovieCategory = () => {
       <MovieList movies={upcoming} category="Upcoming Movies" />
       <div className="mx-auto lg:max-w-[104rem] max-w-sm lg:gap-4 gap-2 text-slate-500 lg:mt-20 lg:mb-10 mt-10 mb-5 flex items-center">
         <h1 className="lg:text-5xl md:text-3xl text-2xl font-extrabold">TV Series Lists</h1>
-        <BiTv className="lg:size-9 size-5" />
+        <BiTv className="lg:size-12 size-5" />
       </div>
       {/* list of series categories */}
     </div>

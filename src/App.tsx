@@ -6,30 +6,42 @@ import { useEffect } from "react";
 import MovieDetails from "./components/pages/MovieDetails";
 const App = () => {
   useEffect(() => {
-    const handleKeyDown = (e:KeyboardEvent) => {
-      if (e.key === "f" || e.key === "F") {
-        if (document.fullscreenElement) {
-          document.exitFullscreen();
-          document.body.style.overflow = "auto"; // Allow scroll
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'f' || e.key === 'F') {
+        if (!document.fullscreenElement) {
+          document.documentElement.requestFullscreen()
+            .then(() => {
+              // Allow scroll in fullscreen
+              document.body.style.overflow = 'auto';
+              document.documentElement.style.overflow = 'auto';
+            })
+            .catch(console.error);
         } else {
-          document.body.requestFullscreen();
-          document.body.style.overflow = "auto";
-          document.body.style.scrollbarWidth="none"
+          document.exitFullscreen()
+            .then(() => {
+              document.body.style.overflow = 'auto';
+              document.documentElement.style.overflow = 'auto';
+            })
+            .catch(console.error);
         }
-      } else if (e.key === "Escape") {
+      } else if (e.key === 'Escape') {
         if (document.fullscreenElement) {
-          document.exitFullscreen();
-          document.body.style.overflow = "auto"; // Allow scroll back
+          document.exitFullscreen()
+            .then(() => {
+              document.body.style.overflow = 'auto';
+              document.documentElement.style.overflow = 'auto';
+            })
+            .catch(console.error);
         }
       }
     };
 
-    document.addEventListener("keydown", handleKeyDown);
+    window.addEventListener('keydown', handleKeyDown);
 
-    // Cleanup when component unmounts
     return () => {
-      document.removeEventListener("keydown", handleKeyDown);
-      document.body.style.overflow = "auto"; // Make sure scroll is always reset
+      window.removeEventListener('keydown', handleKeyDown);
+      document.body.style.overflow = 'auto';
+      document.documentElement.style.overflow = 'auto';
     };
   }, []);
   return (

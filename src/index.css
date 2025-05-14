@@ -31,3 +31,12 @@
   0% { background-position: -200% 0; }
   100% { background-position: 200% 0; }
 }
+
+
+::-webkit-scrollbar{
+  @apply w-1 bg-slate-700 rounded-full;
+}
+
+::-webkit-scrollbar-thumb{
+  @apply bg-blue-800 rounded-full;
+}
