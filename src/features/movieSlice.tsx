@@ -8,12 +8,13 @@ import { VITE_APP_API_KEY } from "../lib/data";
 const initialState: {
   movies: {
     popularMovies: MovieType[], topRated: MovieType[], nowPlaying: MovieType[],
-    upcoming: MovieType[]
+    upcoming: MovieType[],
+    movieDetails: MovieType
   };
   status: "idle" | "loading" | "succeeded" | "failed";
   error: null | undefined | string;
 } = {
-  movies: { popularMovies: [], topRated: [], nowPlaying: [], upcoming: [] }
+  movies: { popularMovies: [], topRated: [], nowPlaying: [], upcoming: [], movieDetails: {} as MovieType }
   ,
   status: "idle",
   error: null,
@@ -61,6 +62,22 @@ export const fetchTopRatedMovies = createAsyncThunk("movies/fetchTopRatedMovies"
     }
   );
   return response.data.results; // return the movies array
+});
+export const fetchMovieDetails = createAsyncThunk("movies/fetchMovieDetails", async (id: string) => {
+  try {
+    const response = await axios.get(`https://api.themoviedb.org/3/movie/${id}?language=en-US/`,
+      {
+        params: {
+          api_key: VITE_APP_API_KEY
+        }
+      }
+    )
+    return response.data; // return the movies array
+  } catch (error) {
+    console.error("Error fetching movie details:", error)
+
+  }
+
 });
 
 const movieSlice = createSlice({
@@ -110,6 +127,17 @@ const movieSlice = createSlice({
         state.movies.topRated = action.payload; // populate movies
       })
       .addCase(fetchTopRatedMovies.rejected, (state, action) => {
+        state.status = "failed";
+        state.error = action.error.message;
+      })
+      .addCase(fetchMovieDetails.pending, (state) => {
+        state.status = "loading";
+      })
+      .addCase(fetchMovieDetails.fulfilled, (state, action) => {
+        state.status = "succeeded";
+        state.movies.movieDetails = action.payload; // populate movies
+      })
+      .addCase(fetchMovieDetails.rejected, (state, action) => {
         state.status = "failed";
         state.error = action.error.message;
       })

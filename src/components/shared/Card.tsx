@@ -6,9 +6,9 @@ import { FC } from 'react';
 
 const Card: FC<CardProps> = ({ movie, ...rest }) => {
     const getRatingColor = (rating: number) => {
-        if (rating >= 7) return 'bg-green-500'; // Good
-        if (rating >= 4) return 'bg-yellow-400'; // Average
-        return 'bg-red-500'; // Bad
+        if (rating >= 7) return 'border-green-500'; // Good
+        if (rating >= 4) return 'border-yellow-400'; // Average
+        return 'border-red-500'; // Bad
     };
     const colorClass = getRatingColor(movie.vote_average);
     return (
@@ -19,11 +19,11 @@ const Card: FC<CardProps> = ({ movie, ...rest }) => {
                     <img src={`https://image.tmdb.org/t/p/original${movie.poster_path}`} className='rounded-2xl group-hover:scale-105 duration-300' alt="" loading='lazy' />
                     <FaPlay className='absolute size-7 group-hover:opacity-100 lg:opacity-0 transition-opacity duration-300' />
                 </div>
-                <div className={`flex items-center justify-center ${colorClass} text-black font-bold rounded-full size-8 text-sm absolute top-2 right-2`}>
+                <div className={`flex items-center justify-center border-2 bg-black/40 backdrop-blur-2xl ${colorClass} font-bold rounded-full size-9 text-sm absolute top-2 left-2`}>
                     {movie.vote_average.toFixed(1)}
                 </div>
             </div>
-            <h4 className='text-lg text-center font-extrabold text-wrap'>{movie.original_title?movie.original_title:movie.name}</h4>
+            <h4 className='text-lg text-center font-extrabold text-wrap'>{movie.original_title||movie.name}</h4>
         </div>
     )
 }

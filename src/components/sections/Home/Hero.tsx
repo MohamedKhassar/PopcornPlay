@@ -3,6 +3,7 @@ import MoviesCarousel from "../../shared/MoviesCarousel"
 import { useAppDispatch, useAppSelector } from "../../../lib/hooks"
 import { fetchNowPlayingMovies, fetchPopularMovies, fetchTopRatedMovies, fetchUpcomingMovies } from "../../../features/movieSlice"
 import { fetchOnTheAirSeries, fetchPopularSeries, fetchTopRatedSeries } from "../../../features/SeriesSlice"
+import { fetchGenres } from "../../../features/genreSlice"
 const Hero = () => {
     const { status } = useAppSelector(state => state.movies)
     const dispatch = useAppDispatch()
@@ -15,6 +16,7 @@ const Hero = () => {
         dispatch(fetchPopularSeries())
         dispatch(fetchTopRatedSeries())
         dispatch(fetchOnTheAirSeries())
+        dispatch(fetchGenres())
     }, [])
 
     return (

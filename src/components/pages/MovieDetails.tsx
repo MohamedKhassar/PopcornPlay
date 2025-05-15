@@ -1,29 +1,31 @@
-import { useEffect, useState } from "react"
-import { MovieType } from "../../lib/types"
-import { useParams } from "react-router-dom"
-import axios from "axios"
-import { VITE_APP_API_KEY } from "../../lib/data"
+import { useEffect } from "react"
+import { useNavigate, useParams } from "react-router-dom"
+import MoviePost from "../shared/MoviePost"
+import { fetchMovieDetails } from "../../features/movieSlice"
+import { useAppDispatch, useAppSelector } from "../../lib/hooks"
+import { BiChevronLeft } from "react-icons/bi"
 
 const MovieDetails = () => {
-    const [movie, setMovie] = useState<MovieType>()
     const { id } = useParams()
+    const { status, movies } = useAppSelector(state => state.movies)
+    const dispatch = useAppDispatch()
     useEffect(() => {
-        const fetchMovieDetails = async () => {
-            const data = await axios.get(`https://api.themoviedb.org/3/movie/${id}/`,
-                {
-                    params: {
-                        api_key: VITE_APP_API_KEY
-                    }
-                }
-            )
-            setMovie(data.data.results[0])
-        }
-        fetchMovieDetails()
-    }, [])
-    console.log(movie)
+        if (id) dispatch(fetchMovieDetails(id))
+    }, [id])
+const nav=useNavigate()
     return (
-        <>
-        </>
+        <div className="h-screen relative">
+            <button onClick={()=>nav(-1)} className="absolute top-28 left-10 bg-white/30 backdrop-blur-2xl rounded-full p-1 hover:bg-white/40 duration-300 cursor-pointer z-50">
+                <BiChevronLeft className="size-8" />
+
+            </button>            {status == "succeeded" ?
+                <MoviePost movie={movies.movieDetails} />
+                :
+                <div className="h-full">
+                    <div className="size-full rounded-xl skeleton-shimmer" />
+                </div>
+            }
+        </div>
     )
 }
 

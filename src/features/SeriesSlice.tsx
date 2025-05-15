@@ -5,16 +5,33 @@ import { VITE_APP_API_KEY } from "../lib/data";
 
 const initialState: {
     series: {
-        popularSeries: MovieType[], topRatedSeries: MovieType[], onTheAir: MovieType[]
+        popularSeries: MovieType[], topRatedSeries: MovieType[], onTheAir: MovieType[], seriesDetails: MovieType
     };
     status: "idle" | "loading" | "succeeded" | "failed";
     error: null | undefined | string;
 } = {
-    series: { popularSeries: [], topRatedSeries: [], onTheAir: [] }
+    series: { popularSeries: [], topRatedSeries: [], onTheAir: [], seriesDetails: {} as MovieType }
     ,
     status: "idle",
     error: null,
 };
+
+export const fetchSeriesDetails = createAsyncThunk("series/fetchSeriesDetails", async (id: string) => {
+    try {
+        const response = await axios.get(`https://api.themoviedb.org/3/tv/${id}?language=en-US/`,
+            {
+                params: {
+                    api_key: VITE_APP_API_KEY
+                }
+            }
+        )
+        return response.data; // return the movies array
+    } catch (error) {
+        console.error("Error fetching serie details:", error)
+
+    }
+
+});
 
 export const fetchPopularSeries = createAsyncThunk("series/fetchPopularSeries", async () => {
     const response = await axios.get(
@@ -85,6 +102,17 @@ const seriesSlice = createSlice({
                 state.series.onTheAir = action.payload; // populate movies
             })
             .addCase(fetchOnTheAirSeries.rejected, (state, action) => {
+                state.status = "failed";
+                state.error = action.error.message;
+            })
+            .addCase(fetchSeriesDetails.pending, (state) => {
+                state.status = "loading";
+            })
+            .addCase(fetchSeriesDetails.fulfilled, (state, action) => {
+                state.status = "succeeded";
+                state.series.seriesDetails = action.payload; // populate movies
+            })
+            .addCase(fetchSeriesDetails.rejected, (state, action) => {
                 state.status = "failed";
                 state.error = action.error.message;
             })
