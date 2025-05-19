@@ -20,7 +20,7 @@ const MoviesCarousel = () => {
             {
                 popularMovies.slice(0, 8).map((movie, index) => (
                     <SwiperSlide key={index} className="relative">
-                        <MoviePost movie={movie} />
+                        <MoviePost movie={{ details: movie }} />
                     </SwiperSlide>
                 ))
             }

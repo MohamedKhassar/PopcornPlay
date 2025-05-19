@@ -2,19 +2,19 @@
 
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
-import { MovieType } from "../lib/types";
+import { CastMember, MovieType } from "../lib/types";
 import { VITE_APP_API_KEY } from "../lib/data";
 
 const initialState: {
   movies: {
     popularMovies: MovieType[], topRated: MovieType[], nowPlaying: MovieType[],
     upcoming: MovieType[],
-    movieDetails: MovieType
+    movieDetails: { details: MovieType, cast: CastMember[] }
   };
   status: "idle" | "loading" | "succeeded" | "failed";
   error: null | undefined | string;
 } = {
-  movies: { popularMovies: [], topRated: [], nowPlaying: [], upcoming: [], movieDetails: {} as MovieType }
+  movies: { popularMovies: [], topRated: [], nowPlaying: [], upcoming: [], movieDetails: { details: {} as MovieType, cast: [] as CastMember[] } }
   ,
   status: "idle",
   error: null,
@@ -63,22 +63,36 @@ export const fetchTopRatedMovies = createAsyncThunk("movies/fetchTopRatedMovies"
   );
   return response.data.results; // return the movies array
 });
-export const fetchMovieDetails = createAsyncThunk("movies/fetchMovieDetails", async (id: string) => {
-  try {
-    const response = await axios.get(`https://api.themoviedb.org/3/movie/${id}?language=en-US/`,
-      {
-        params: {
-          api_key: VITE_APP_API_KEY
-        }
-      }
-    )
-    return response.data; // return the movies array
-  } catch (error) {
-    console.error("Error fetching movie details:", error)
 
+export const fetchMovieDetails = createAsyncThunk(
+  "movies/fetchMovieDetails",
+  async (id: string) => {
+    try {
+      const [detailsResponse, creditsResponse] = await Promise.all([
+        axios.get(`https://api.themoviedb.org/3/movie/${id}`, {
+          params: {
+            api_key: VITE_APP_API_KEY,
+            language: "en-US",
+          },
+        }),
+        axios.get(`https://api.themoviedb.org/3/movie/${id}/credits`, {
+          params: {
+            api_key: VITE_APP_API_KEY,
+            language: "en-US",
+          },
+        }),
+      ]);
+
+      return {
+        details: detailsResponse.data,
+        cast: creditsResponse.data.cast.slice(0, 10), // top 10 cast members
+      };
+    } catch (error) {
+      console.error("Error fetching movie details and cast:", error);
+      throw error;
+    }
   }
-
-});
+);
 
 const movieSlice = createSlice({
   name: "movies",

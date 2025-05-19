@@ -31,31 +31,12 @@ const MoviePost = ({ movie }: { movie: { details: MovieType, cast?: CastMember[]
                         <div className="flex flex-col gap-4">
                             <div className="flex items-center lg:gap-15 gap-5 flex-wrap">
                                 <div className="flex items-center gap-2">
-                                    <h5 className="capitalize font-semibold">release date:</h5>
+                                    <h5 className="capitalize font-semibold">date :</h5>
                                     <ul className="flex flex-wrap gap-2">
-
-                                        <li className="px-5 py-2 hover:bg-slate-600/70 duration-300 cursor-pointer bg-slate-600/50 capitalize rounded-full text-sm">{new Date(movie.details.release_date).getFullYear()}</li>
-
-
+                                        <li className="px-5 py-2 hover:bg-slate-600/70 duration-300 cursor-pointer bg-slate-600/50 capitalize rounded-full text-sm">{new Date(movie.details.first_air_date).getFullYear()} - {movie.details.in_production ? "Present" : new Date(movie.details.last_air_date).getFullYear()}
+                                        </li>
                                     </ul>
                                 </div>
-                                {
-                                    movie.details.runtime &&
-                                    <div className="flex items-center gap-2">
-                                        <h5 className="capitalize font-semibold">runtime:</h5>
-                                        <ul className="flex flex-wrap gap-2">
-
-                                            <li className="px-5 py-2 hover:bg-slate-600/70 duration-300 cursor-pointer bg-slate-600/50 capitalize rounded-full text-sm">{movie.details.runtime
-                                                ? movie.details.runtime >= 60
-                                                    ? `${Math.floor(movie.details.runtime / 60)}h ${movie.details.runtime % 60}m`
-                                                    : `${movie.details.runtime} min`
-                                                : "Unknown"}</li>
-
-
-
-                                        </ul>
-                                    </div>
-                                }
                             </div>
                             <h5 className="capitalize font-semibold">genres:</h5>
                             <ul className="flex flex-wrap gap-2">

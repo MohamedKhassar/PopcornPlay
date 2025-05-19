@@ -1,16 +1,16 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
-import { MovieType } from "../lib/types";
+import { CastMember, MovieType } from "../lib/types";
 import { VITE_APP_API_KEY } from "../lib/data";
 
 const initialState: {
     series: {
-        popularSeries: MovieType[], topRatedSeries: MovieType[], onTheAir: MovieType[], seriesDetails: MovieType
+        popularSeries: MovieType[], topRatedSeries: MovieType[], onTheAir: MovieType[], seriesDetails: { details: MovieType, cast: CastMember[] }
     };
     status: "idle" | "loading" | "succeeded" | "failed";
     error: null | undefined | string;
 } = {
-    series: { popularSeries: [], topRatedSeries: [], onTheAir: [], seriesDetails: {} as MovieType }
+    series: { popularSeries: [], topRatedSeries: [], onTheAir: [], seriesDetails: { details: {} as MovieType, cast: [] as CastMember[] } }
     ,
     status: "idle",
     error: null,
@@ -18,17 +18,28 @@ const initialState: {
 
 export const fetchSeriesDetails = createAsyncThunk("series/fetchSeriesDetails", async (id: string) => {
     try {
-        const response = await axios.get(`https://api.themoviedb.org/3/tv/${id}?language=en-US/`,
-            {
+        const [detailsResponse, creditsResponse] = await Promise.all([
+            axios.get(`https://api.themoviedb.org/3/tv/${id}`, {
                 params: {
-                    api_key: VITE_APP_API_KEY
-                }
-            }
-        )
-        return response.data; // return the movies array
-    } catch (error) {
-        console.error("Error fetching serie details:", error)
+                    api_key: VITE_APP_API_KEY,
+                    language: "en-US",
+                },
+            }),
+            axios.get(`https://api.themoviedb.org/3/tv/${id}/credits`, {
+                params: {
+                    api_key: VITE_APP_API_KEY,
+                    language: "en-US",
+                },
+            }),
+        ]);
 
+        return {
+            details: detailsResponse.data,
+            cast: creditsResponse.data.cast.slice(0, 10), // top 10 cast members
+        };
+    } catch (error) {
+        console.error("Error fetching movie details and cast:", error);
+        throw error;
     }
 
 });
