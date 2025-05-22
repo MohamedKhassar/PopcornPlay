@@ -1,6 +1,6 @@
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Pagination, EffectFade, Autoplay } from 'swiper/modules';
-import MoviePost from './MoviePost';
+import MoviePost from '../sections/Movie/MoviePost';
 import { useAppSelector } from '../../lib/hooks';
 
 const MoviesCarousel = () => {

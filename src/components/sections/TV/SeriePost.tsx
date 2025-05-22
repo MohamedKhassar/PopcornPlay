@@ -1,10 +1,10 @@
 
 import { BsPlayCircleFill } from "react-icons/bs"
-import { CastMember, MovieType } from "../../lib/types"
-import { useAppSelector } from "../../lib/hooks";
+import { MovieCredits, MovieType } from "../../../lib/types"
+import { useAppSelector } from "../../../lib/hooks";
 import { LuLoaderCircle } from "react-icons/lu";
 
-const MoviePost = ({ movie }: { movie: { details: MovieType, cast?: CastMember[] } }) => {
+const MoviePost = ({ movie }: { movie: { details: MovieType, credits?: MovieCredits } }) => {
     const genres = useAppSelector(state => state.genres.genres)
     const getGenreName = (genreId: number) => {
         if (movie.details.genre_ids) {
@@ -12,7 +12,7 @@ const MoviePost = ({ movie }: { movie: { details: MovieType, cast?: CastMember[]
             return genre?.name;
         }
     };
-    console.log(movie.details)
+    console.log(movie)
     return (
         <>
             <img loading='lazy' src={`https://image.tmdb.org/t/p/original${movie?.details.backdrop_path}`} className="object-center object-cover size-full" alt={movie?.details.title} />

@@ -1,7 +1,7 @@
 
 import { BsPlayCircleFill } from "react-icons/bs"
-import { CastMember, MovieType } from "../../lib/types"
-import { useAppSelector } from "../../lib/hooks";
+import { CastMember, MovieType } from "../../../lib/types"
+import { useAppSelector } from "../../../lib/hooks";
 import { LuLoaderCircle } from "react-icons/lu";
 
 const MoviePost = ({ movie }: { movie: { details: MovieType, cast?: CastMember[] } }) => {
@@ -12,10 +12,9 @@ const MoviePost = ({ movie }: { movie: { details: MovieType, cast?: CastMember[]
             return genre?.name;
         }
     };
-    console.log(movie.details)
     return (
         <>
-            <img loading='lazy' src={`https://image.tmdb.org/t/p/original${movie?.details.backdrop_path}`} className="object-center object-cover size-full" alt={movie?.details.title} />
+            <img loading='lazy' src={`https://image.tmdb.org/t/p/original${movie?.details.backdrop_path}`} className="object-center object-cover size-full bg-black" alt={movie?.details.title} />
             <div className=" bg-gradient-to-t from-black/50 from-80% to-transparent inset-0 absolute flex items-end px-10 xl:py-20 py-10 h-full">
                 <div className="flex gap-4 xl:max-w-3xl lg:max-w-xl max-w-fit items-center">
                     <img src={`https://image.tmdb.org/t/p/original${movie?.details.poster_path}`} className="w-70 max-lg:hidden rounded-2xl" loading="lazy" alt="" />
@@ -34,7 +33,7 @@ const MoviePost = ({ movie }: { movie: { details: MovieType, cast?: CastMember[]
                                     <h5 className="capitalize font-semibold">release date:</h5>
                                     <ul className="flex flex-wrap gap-2">
 
-                                        <li className="px-5 py-2 hover:bg-slate-600/70 duration-300 cursor-pointer bg-slate-600/50 capitalize rounded-full text-sm">{new Date(movie.details.release_date).getFullYear()}</li>
+                                        <li className="px-5 py-2 hover:bg-slate-600/70 duration-300 cursor-pointer bg-slate-600/50 capitalize rounded-full text-sm">{movie.details.release_date&&new Date(movie.details.release_date).getFullYear()}</li>
 
 
                                     </ul>

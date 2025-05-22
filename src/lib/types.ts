@@ -16,6 +16,7 @@ export type MovieType = {
     id: number;
     name: string;
   }[];
+  created_by:CrewMember[]
   id: number;
   original_language: string;
   original_title: string;
@@ -53,4 +54,21 @@ export type CastMember = {
   original_name: string;
   popularity: number;
   profile_path: string | null;
+};
+
+export type CrewMember = {
+  credit_id: string;
+  department: string;
+  gender: number | null;
+  id: number;
+  job: string;
+  name: string;
+  original_name: string;
+  popularity: number;
+  profile_path: string | null;
+};
+
+export type MovieCredits = {
+  cast: CastMember[];
+  crew: CrewMember[];
 };

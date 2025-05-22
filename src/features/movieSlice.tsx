@@ -2,19 +2,19 @@
 
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
-import { CastMember, MovieType } from "../lib/types";
+import { MovieCredits, MovieType } from "../lib/types";
 import { VITE_APP_API_KEY } from "../lib/data";
 
 const initialState: {
   movies: {
     popularMovies: MovieType[], topRated: MovieType[], nowPlaying: MovieType[],
     upcoming: MovieType[],
-    movieDetails: { details: MovieType, cast: CastMember[] }
+    movieDetails: { details: MovieType, credits: MovieCredits }
   };
   status: "idle" | "loading" | "succeeded" | "failed";
   error: null | undefined | string;
 } = {
-  movies: { popularMovies: [], topRated: [], nowPlaying: [], upcoming: [], movieDetails: { details: {} as MovieType, cast: [] as CastMember[] } }
+  movies: { popularMovies: [], topRated: [], nowPlaying: [], upcoming: [], movieDetails: { details: {} as MovieType, credits: {} as MovieCredits } }
   ,
   status: "idle",
   error: null,
@@ -85,7 +85,7 @@ export const fetchMovieDetails = createAsyncThunk(
 
       return {
         details: detailsResponse.data,
-        cast: creditsResponse.data.cast.slice(0, 10), // top 10 cast members
+        credits: creditsResponse.data, // top 10 cast members
       };
     } catch (error) {
       console.error("Error fetching movie details and cast:", error);
