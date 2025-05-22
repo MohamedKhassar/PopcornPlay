@@ -19,13 +19,12 @@ const CrewDetails = ({ details, credits }: { details: MovieType, credits: MovieC
         setIsBeginning(swiper.isBeginning);
         setIsEnd(swiper.isEnd);
     };
-    console.log(details.created_by?.length, credits.crew?.length, credits.cast?.length)
+    // console.log(details.created_by?.length, credits.crew?.filter(item => item.job === "Director").length, credits.cast?.length)
     return (
         <section className={cn("xl:max-w-[109rem] xl:mx-auto md:mx-20 mx-5 py-15 md:space-y-10 space-y-8",
             (details.created_by?.length == 0 || details.created_by?.length == undefined) && (credits.crew?.length == 0 || credits.crew?.length == undefined) && (credits.cast?.length == 0 || credits.cast?.length == undefined) ? "hidden" : ""
         )}>
-            {details.created_by?.length > 0 ||
-                credits.crew?.length > 0 &&
+            {(details.created_by?.length > 0 || credits.crew?.filter(item => item.job === "Director").length > 0) &&
                 <div className="space-y-5">
                     <div className="flex items-stretch gap-2">
                         <span className="lg:w-1.5 w-1 rounded-full bg-blue-600"></span>
