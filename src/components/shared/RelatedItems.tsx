@@ -9,7 +9,6 @@ import useMediaQuery from "../../features/UseMediaQuery";
 import SwiperCore from "swiper";
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
 import { cn } from "../../lib/cn";
-import { Link } from "react-router-dom";
 interface RelatedProps {
     genreIds: number[];
     currentId: number;
@@ -78,12 +77,11 @@ const RelatedItems: React.FC<RelatedProps> = ({ genreIds, currentId, type }) => 
 
                 {related?.map((item) => (
                     <SwiperSlide>
-                        <Link
-                            to={`/${type === "tv" ? "serie" : "movie"}/${item.id}`}
-                            onClick={() => window.location.href = `/${type === "tv" ? "serie" : "movie"}/${item.id}`}
+                        <a
+                            href={`/${type === "tv" ? "serie" : "movie"}/${item.id}`}
                         >
                             <Card movie={item} />
-                        </Link>
+                        </a>
 
 
                     </SwiperSlide>
