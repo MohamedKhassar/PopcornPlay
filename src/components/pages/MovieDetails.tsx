@@ -6,6 +6,7 @@ import { useAppDispatch, useAppSelector } from "../../lib/hooks"
 import { BiChevronLeft } from "react-icons/bi"
 import CrewDetails from "../shared/CrewDetails"
 import TrailerPlayer from "../shared/TrailerPlayer"
+import RelatedItems from "../shared/RelatedItems"
 const MovieDetails = () => {
     const { id } = useParams()
     const { status, movies } = useAppSelector(state => state.movies)
@@ -30,6 +31,7 @@ const MovieDetails = () => {
             }
             <CrewDetails {...movies.movieDetails} />
             <TrailerPlayer id={movies.movieDetails.details.id} type="movie" />
+            <RelatedItems genreIds={movies.movieDetails.details.genre_ids} currentId={movies.movieDetails.details.id} type="movie" />
         </main>
     )
 }

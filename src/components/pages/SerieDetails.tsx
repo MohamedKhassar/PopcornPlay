@@ -6,6 +6,7 @@ import { BiChevronLeft } from "react-icons/bi"
 import SeriePost from "../sections/TV/SeriePost"
 import CrewDetails from "../shared/CrewDetails"
 import TrailerPlayer from "../shared/TrailerPlayer"
+import RelatedItems from "../shared/RelatedItems"
 
 
 const SerieDetails = () => {
@@ -23,10 +24,12 @@ const SerieDetails = () => {
                 <BiChevronLeft className="size-8" />
             </button>
             {status == "succeeded" &&
-                <SeriePost movie={series.seriesDetails} />
+                <SeriePost serie={series.seriesDetails} />
             }
             <CrewDetails {...series.seriesDetails} />
             <TrailerPlayer id={series.seriesDetails.details.id} type="tv" />
+            <RelatedItems genreIds={series.seriesDetails.details.genre_ids} currentId={series.seriesDetails.details.id} type="tv" />
+
         </main>
     )
 }

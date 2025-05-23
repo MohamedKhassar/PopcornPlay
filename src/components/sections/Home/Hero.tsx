@@ -9,14 +9,21 @@ const Hero = () => {
     const dispatch = useAppDispatch()
 
     useEffect(() => {
-        dispatch(fetchPopularMovies())
-        dispatch(fetchTopRatedMovies())
-        dispatch(fetchUpcomingMovies())
-        dispatch(fetchNowPlayingMovies())
-        dispatch(fetchPopularSeries())
-        dispatch(fetchTopRatedSeries())
-        dispatch(fetchOnTheAirSeries())
-        dispatch(fetchGenres())
+        const fetchData = async () => {
+            try {
+                await dispatch(fetchPopularMovies())
+                await dispatch(fetchTopRatedMovies())
+                await dispatch(fetchUpcomingMovies())
+                await dispatch(fetchNowPlayingMovies())
+                await dispatch(fetchPopularSeries())
+                await dispatch(fetchTopRatedSeries())
+                await dispatch(fetchOnTheAirSeries())
+                await dispatch(fetchGenres())
+            } catch (error) {
+                console.error("Error fetching data:", error)
+            }
+        }
+        fetchData()
     }, [])
 
     return (

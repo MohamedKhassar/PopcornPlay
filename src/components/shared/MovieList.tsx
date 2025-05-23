@@ -24,7 +24,6 @@ const MovieList = ({ category, movies, type }: { category: string, type: string,
     setIsBeginning(swiper.isBeginning);
     setIsEnd(swiper.isEnd);
   };
-  console.log(isBeginning,isEnd)
   return (
     <main className="max-w-screen-2xl lg:mx-auto mx-5 lg:mb-20 mb-2 space-y-3">
       <section className="flex justify-between items-center">

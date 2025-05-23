@@ -23,8 +23,16 @@ const CrewDetails = ({ details, credits }: { details: MovieType, credits: MovieC
     console.log(details.created_by?.length, credits.crew?.filter(item => item.job === "Director")?.length)
     return (
         <section className={cn("xl:max-w-[109rem] xl:mx-auto md:mx-20 mx-5 py-15 md:space-y-10 space-y-8",
-            (details.created_by?.length == 0 || details.created_by?.length == undefined) && (credits.crew?.length == 0 || credits.crew?.length == undefined) && (credits.cast?.length == 0 || credits.cast?.length == undefined) ? "hidden" : ""
         )}>
+            <div className="space-y-5">
+                <div className="flex items-stretch gap-2">
+                    <span className="lg:w-1.5 w-1 rounded-full bg-blue-600"></span>
+                    <h1 className="capitalize lg:text-2xl md:text-xl text-lg"><strong>overview :</strong></h1>
+                </div>
+                <p className="lg:text-lg text-sm max-md:text-justify font-medium md:mx-6 mx-4 lg:max-w-5xl text-gray-400">
+                    {details.overview}
+                </p>
+            </div>
             {(details.created_by?.length > 0 || credits.crew?.filter(item => item.job === "Director")?.length > 0) &&
                 <div className="space-y-5">
                     <div className="flex items-stretch gap-2">
@@ -33,54 +41,54 @@ const CrewDetails = ({ details, credits }: { details: MovieType, credits: MovieC
                     </div>
                     <div className="flex gap-x-10 gap-y-5 mx-4 flex-wrap">
                         {
-  details.created_by && details.created_by.length > 0
-    ? details.created_by.map((item, index) => (
-        <div
-          key={index}
-          className="flex items-center gap-4 transition-colors duration-300 hover:bg-blue-950/70 py-3 px-5 cursor-pointer rounded-3xl"
-        >
-          <img
-            src={
-              item?.profile_path
-                ? `https://image.tmdb.org/t/p/original${item.profile_path}`
-                : `https://static.vecteezy.com/system/resources/previews/009/292/244/large_2x/default-avatar-icon-of-social-media-user-vector.jpg`
-            }
-            loading="lazy"
-            alt={item.name}
-            className="size-16 rounded-full object-cover"
-          />
-          <div>
-            <h1 className="md:text-xl">{item.name}</h1>
-            <p className="text-sm text-gray-500">
-              {credits.crew.find((person) => person.id === item.id)?.department}
-            </p>
-          </div>
-        </div>
-      ))
-    : credits.crew
-        .filter((item) => item.job === "Director")
-        .map((item, index) => (
-          <div
-            key={index}
-            className="flex items-center gap-4 transition-colors duration-300 hover:bg-blue-950/70 py-3 px-5 cursor-pointer rounded-3xl"
-          >
-            <img
-              src={
-                item?.profile_path
-                  ? `https://image.tmdb.org/t/p/original${item.profile_path}`
-                  : `https://static.vecteezy.com/system/resources/previews/009/292/244/large_2x/default-avatar-icon-of-social-media-user-vector.jpg`
-              }
-              loading="lazy"
-              alt={item.name}
-              className="size-16 rounded-full object-cover"
-            />
-            <div>
-              <h1 className="md:text-xl">{item.name}</h1>
-              <p className="text-sm text-gray-500">{item.department}</p>
-            </div>
-          </div>
-        ))
-}
+                            details.created_by && details.created_by.length > 0
+                                ? details.created_by.map((item, index) => (
+                                    <div
+                                        key={index}
+                                        className="flex items-center gap-4 transition-colors duration-300 hover:bg-blue-950/70 py-3 px-5 cursor-pointer rounded-3xl"
+                                    >
+                                        <img
+                                            src={
+                                                item?.profile_path
+                                                    ? `https://image.tmdb.org/t/p/original${item.profile_path}`
+                                                    : `https://static.vecteezy.com/system/resources/previews/009/292/244/large_2x/default-avatar-icon-of-social-media-user-vector.jpg`
+                                            }
+                                            loading="lazy"
+                                            alt={item.name}
+                                            className="size-16 rounded-full object-cover"
+                                        />
+                                        <div>
+                                            <h1 className="md:text-xl">{item.name}</h1>
+                                            <p className="text-sm text-gray-500">
+                                                {credits.crew.find((person) => person.id === item.id)?.department}
+                                            </p>
+                                        </div>
+                                    </div>
+                                ))
+                                : credits.crew
+                                    .filter((item) => item.job === "Director")
+                                    .map((item, index) => (
+                                        <div
+                                            key={index}
+                                            className="flex items-center gap-4 transition-colors duration-300 hover:bg-blue-950/70 py-3 px-5 cursor-pointer rounded-3xl"
+                                        >
+                                            <img
+                                                src={
+                                                    item?.profile_path
+                                                        ? `https://image.tmdb.org/t/p/original${item.profile_path}`
+                                                        : `https://static.vecteezy.com/system/resources/previews/009/292/244/large_2x/default-avatar-icon-of-social-media-user-vector.jpg`
+                                                }
+                                                loading="lazy"
+                                                alt={item.name}
+                                                className="size-16 rounded-full object-cover"
+                                            />
+                                            <div>
+                                                <h1 className="md:text-xl">{item.name}</h1>
+                                                <p className="text-sm text-gray-500">{item.department}</p>
+                                            </div>
+                                        </div>
+                                    ))
+                        }
 
                     </div>
                 </div>
@@ -117,7 +125,7 @@ const CrewDetails = ({ details, credits }: { details: MovieType, credits: MovieC
                         }}
                         modules={[Navigation]}
                         effect="fade"
-                        className="flex gap-10 mx-4">
+                        className="flex gap-10 !mx-4">
                         {
                             credits.cast?.slice(0, 10).map((item, index) =>
                                 <SwiperSlide>
