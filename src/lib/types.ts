@@ -8,6 +8,7 @@ export type NavItemProps = {
 };
 
 export type MovieType = {
+  production_companies:ProductionCompany[]
   runtime: number;
   adult: boolean;
   backdrop_path: string;
@@ -84,4 +85,11 @@ export interface Trailer {
 export interface TrailerProps {
   id: number;          // movie or TV show ID
   type: "movie" | "tv"; // which type it is
+}
+
+export interface ProductionCompany {
+  id: number;
+  logo_path: string | null;
+  name: string;
+  origin_country: string;
 }

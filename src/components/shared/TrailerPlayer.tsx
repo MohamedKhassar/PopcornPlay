@@ -20,8 +20,6 @@ const TrailerPlayer: React.FC<TrailerProps> = ({ id, type }) => {
                 });
                 
                 const trailers: Trailer[] = res.data.results;
-                console.log(trailers)
-
                 // Find a YouTube Trailer
                 const officialTrailer = trailers.find(
                     (vid) =>
@@ -46,7 +44,6 @@ const TrailerPlayer: React.FC<TrailerProps> = ({ id, type }) => {
         fetchTrailer();
     }, [id, type]);
 
-    console.log(trailerKey)
     return (
         <div className="xl:max-w-[109rem] xl:mx-auto md:mx-20 mx-5 md:space-y-10 space-y-8">
             <div className="flex items-stretch gap-2">
