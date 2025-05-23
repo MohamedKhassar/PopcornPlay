@@ -49,8 +49,8 @@ const MovieList = ({ category, movies, type }: { category: string, type: string,
         }}
         className="flex rounded-xl justify-center items-center"
         modules={[Navigation]}
-        onSlideChange={(swiper) => handleSwiper(swiper)}
-        onSwiper={(swiper) => handleSwiper(swiper)}
+        onSlideChange={(swiper) => setTimeout(() => handleSwiper(swiper), 0)}
+        onSwiper={(swiper) => setTimeout(() => handleSwiper(swiper), 0)}
         effect="fade"
       >
         {

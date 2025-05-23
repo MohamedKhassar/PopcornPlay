@@ -11,8 +11,14 @@ const MovieDetails = () => {
     const { id } = useParams()
     const { status, movies } = useAppSelector(state => state.movies)
     const dispatch = useAppDispatch()
+
     useEffect(() => {
-        if (id) dispatch(fetchMovieDetails(id))
+        try {
+            if (id) dispatch(fetchMovieDetails(id))
+        } catch (error) {
+            console.error("Error fetching movie details:", error)
+
+        }
     }, [id])
     const nav = useNavigate()
     console.log(movies.movieDetails)

@@ -26,6 +26,7 @@ const RelatedItems: React.FC<RelatedProps> = ({ genreIds, currentId, type }) => 
     const isMediumScreen = useMediaQuery("(max-width: 1400px)"); // Tailwind's `md` breakpoint
     const slidesToScroll = isXSmallScreen ? 1 : isSmallScreen ? 2 : isMediumScreen ? 4 : 5;
 
+
     const handleSwiper = (swiper: SwiperCore) => {
         setIsBeginning(swiper.isBeginning);
         setIsEnd(swiper.isEnd);
@@ -40,17 +41,16 @@ const RelatedItems: React.FC<RelatedProps> = ({ genreIds, currentId, type }) => 
                 },
             });
             setRelated(res.data.results.filter((item: MovieType) => item.id !== currentId));
+            window.scrollTo({ top: 0, behavior: "smooth" });
         };
-
         fetchRelated();
     }, [genreIds, currentId, type]);
-
     return (
         <div className="xl:max-w-[109rem] xl:mx-auto md:mx-20 mx-5 md:space-y-10 space-y-8 md:mt-10 mt-8">
             <div className="flex justify-between items-center">
                 <div className="flex items-stretch gap-2">
                     <span className="lg:w-1.5 w-1 rounded-full bg-blue-600"></span>
-                    <h1 className="capitalize lg:text-2xl md:text-xl text-lg"><strong>related {type=="tv"?"series":"Movies"} :</strong></h1>
+                    <h1 className="capitalize lg:text-2xl md:text-xl text-lg"><strong>related {type == "tv" ? "series" : "Movies"} :</strong></h1>
                 </div>
                 <div className="flex gap-4 items-start">
                     <button disabled={isBeginning} ref={prevRef} className={cn("hover:bg-slate-600/30 active:bg-slate-600/50 p-3 rounded-full  duration-300",
@@ -70,22 +70,17 @@ const RelatedItems: React.FC<RelatedProps> = ({ genreIds, currentId, type }) => 
                 }}
                 className="flex rounded-xl justify-center items-center"
                 modules={[Navigation]}
-                onSlideChange={(swiper) => handleSwiper(swiper)}
-                onSwiper={(swiper) => handleSwiper(swiper)}
+                onSlideChange={(swiper) => setTimeout(() => handleSwiper(swiper), 0)}
+                onSwiper={(swiper) => setTimeout(() => handleSwiper(swiper), 0)}
                 effect="fade"
             >
 
                 {related?.map((item) => (
-                    // <div key={item.id} className="bg-slate-800 p-3 rounded-lg">
-                    //     <img
-                    //         src={`https://image.tmdb.org/t/p/w500${item.poster_path}`}
-                    //         alt={item.title || item.name}
-                    //         className="rounded-md mb-2"
-                    //     />
-                    //     <h3 className="text-sm text-white">{item.title || item.name}</h3>
-                    // </div>
                     <SwiperSlide>
-                        <Card movie={item} />
+                        <a href={`/${type === "tv" ? "serie" : "movie"}/${item.id}`}>
+                            <Card movie={item} />
+                        </a>
+
                     </SwiperSlide>
                 ))}
             </Swiper>
