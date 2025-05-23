@@ -24,7 +24,7 @@ const MoviePost = ({ movie }: { movie: { details: MovieType, cast?: CastMember[]
                             <span className={`flex justify-center items-center rounded-full md:min-h-10 md:min-w-10 min-w-8 min-h-8 md:text-base text-sm border-2 text-white bg-black/10 backdrop-blur-2xl font-extrabold ${Number(movie.details.vote_average) >= 7 ? 'border-green-500' : Number(movie.details.vote_average) >= 4 ? 'border-yellow-400' : 'border-red-500'}`}>{Number(movie?.details.vote_average).toFixed(1)}</span>
                         </div>
                         <p className="text-sm text-gray-400">
-                            {movie?.details.overview.length > 100 ? `${movie?.details.overview.slice(0, 100)}...` : movie?.details.overview}
+                            {movie?.details.overview?.length > 100 ? `${movie?.details.overview?.slice(0, 100)}...` : movie?.details.overview}
                         </p>
                         <button className="bg-blue-600 flex items-center p-3 rounded-2xl justify-center gap-2 hover:bg-blue-700 cursor-pointer transition-colors duration-300">watch <BsPlayCircleFill /></button>
                         <div className="flex flex-col gap-4">
