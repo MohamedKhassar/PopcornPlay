@@ -6,7 +6,6 @@ import { BiTv } from "react-icons/bi"
 const MovieCategory = () => {
   const { popularMovies, nowPlaying, topRated, upcoming } = useAppSelector(state => state.movies.movies)
   const { popularSeries, onTheAir, topRatedSeries } = useAppSelector(state => state.series.series)
-  console.log(popularSeries)
   return (
     <div>
       <div id="movies" className="lg:scroll-mt-25 scroll-mt-19 mx-auto lg:max-w-[104rem] max-w-sm lg:gap-4 gap-2 text-slate-500 lg:mt-20 lg:mb-10 mt-10 mb-5 flex items-center">

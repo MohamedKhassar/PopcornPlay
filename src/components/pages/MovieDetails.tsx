@@ -21,7 +21,6 @@ const MovieDetails = () => {
         }
     }, [id])
     const nav = useNavigate()
-    console.log(movies.movieDetails)
     return (
         <main className="h-screen relative">
             <button onClick={() => nav(-1)} className="absolute top-28 left-10 bg-white/30 backdrop-blur-2xl rounded-full p-1 hover:bg-white/40 duration-300 cursor-pointer z-40">

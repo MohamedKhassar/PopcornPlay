@@ -12,25 +12,30 @@ const TrailerPlayer: React.FC<TrailerProps> = ({ id, type }) => {
         const fetchTrailer = async () => {
             try {
                 setLoading(true);
-                const res = await axios.get(`https://api.themoviedb.org/3/${type}/${id}/videos`, {
-                    params: {
-                        api_key: VITE_APP_API_KEY,
-                        language: "en-US",
-                    },
-                });
-                
-                const trailers: Trailer[] = res.data.results;
-                // Find a YouTube Trailer
-                const officialTrailer = trailers.find(
-                    (vid) =>
-                        vid.site === "YouTube" &&
-                        vid.type === "Trailer" &&
-                        (vid.official || vid.name.toLowerCase().includes("trailer"))
-                );
+                if (id) {
 
-                if (officialTrailer?.key) {
-                    setTrailerKey(officialTrailer.key);
-                }else{
+                    const res = await axios.get(`https://api.themoviedb.org/3/${type}/${id}/videos`, {
+                        params: {
+                            api_key: VITE_APP_API_KEY,
+                            language: "en-US",
+                        },
+                    });
+
+                    const trailers: Trailer[] = res.data.results;
+                    // Find a YouTube Trailer
+                    const officialTrailer = trailers.find(
+                        (vid) =>
+                            vid.site === "YouTube" &&
+                            vid.type === "Trailer" &&
+                            (vid.official || vid.name.toLowerCase().includes("trailer"))
+                    );
+
+                    if (officialTrailer?.key) {
+                        setTrailerKey(officialTrailer.key);
+                    } else {
+                        setTrailerKey(null);
+                    }
+                } else {
                     setTrailerKey(null);
                 }
             } catch (error) {

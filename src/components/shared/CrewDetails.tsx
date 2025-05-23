@@ -20,7 +20,6 @@ const CrewDetails = ({ details, credits }: { details: MovieType, credits: MovieC
         setIsBeginning(swiper.isBeginning);
         setIsEnd(swiper.isEnd);
     };
-    console.log(details.created_by?.length, credits.crew?.filter(item => item.job === "Director")?.length)
     return (
         <section className={cn("xl:max-w-[109rem] xl:mx-auto md:mx-20 mx-5 py-15 md:space-y-10 space-y-8",
         )}>
