@@ -5,6 +5,7 @@ import { fetchMovieDetails } from "../../features/movieSlice"
 import { useAppDispatch, useAppSelector } from "../../lib/hooks"
 import { BiChevronLeft } from "react-icons/bi"
 import CrewDetails from "../shared/CrewDetails"
+import TrailerPlayer from "../shared/TrailerPlayer"
 const MovieDetails = () => {
     const { id } = useParams()
     const { status, movies } = useAppSelector(state => state.movies)
@@ -28,6 +29,7 @@ const MovieDetails = () => {
                 </section>
             }
             <CrewDetails {...movies.movieDetails} />
+            <TrailerPlayer id={movies.movieDetails.details.id} type="movie" />
         </main>
     )
 }

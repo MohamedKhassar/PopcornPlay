@@ -72,3 +72,16 @@ export type MovieCredits = {
   cast: CastMember[];
   crew: CrewMember[];
 };
+
+export interface Trailer {
+  key: string;
+  site: string;
+  type: string;
+  official: boolean;
+  name: string;
+}
+
+export interface TrailerProps {
+  id: number;          // movie or TV show ID
+  type: "movie" | "tv"; // which type it is
+}
