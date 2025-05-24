@@ -10,7 +10,7 @@ const MovieCategory = () => {
   return (
     <main className="lg:scroll-mt-25 scroll-mt-19 lg:my-15 my-10 lg:mx-auto mx-7 lg:max-w-[104rem]">
       <section className="lg:space-y-5 space-y-2.5">
-        <div id="movies">
+        <div id="movies" className="scroll-mt-25">
           <Title>
             Movie Lists
             <LuFilm className="lg:size-7 size-5" />
@@ -24,7 +24,7 @@ const MovieCategory = () => {
         </div>
       </section>
       <section className="lg:space-y-5 space-y-2.5">
-        <div id="series">
+        <div id="series" className="scroll-mt-25">
           <Title>
             TV Series Lists
             <BiTv className="lg:size-9 size-5" />
