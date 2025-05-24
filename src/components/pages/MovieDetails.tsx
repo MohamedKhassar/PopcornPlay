@@ -24,7 +24,7 @@ const MovieDetails = () => {
     const nav = useNavigate()
     return (
         <>
-            <MetaData description={`Watch ${movies.movieDetails.details.title} — ${movies.movieDetails.details.overview?.slice(0, 120)}...`} image={`https://image.tmdb.org/t/p/original${movies.movieDetails.details.poster_path}`} title={`PopcornPlay - ${movies.movieDetails.details.title}`} url={`https://popcornplay-lyart.vercel.app/movie/${movies.movieDetails.details.id}`} />
+            <MetaData description={`Watch ${movies.movieDetails.details.title} — ${movies.movieDetails.details.overview?.slice(0, 120)}...`} image={`https://image.tmdb.org/t/p/original${movies.movieDetails.details.backdrop_path}`} title={`PopcornPlay - ${movies.movieDetails.details.title}`} url={`https://popcornplay-lyart.vercel.app/movie/${movies.movieDetails.details.id}`} />
             <main className="h-screen relative">
                 <button onClick={() => nav(-1)} className="absolute top-28 left-10 bg-white/30 backdrop-blur-2xl rounded-full p-1 hover:bg-white/40 duration-300 cursor-pointer z-40">
                     <BiChevronLeft className="size-8" />

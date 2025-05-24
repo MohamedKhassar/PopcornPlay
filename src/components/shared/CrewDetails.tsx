@@ -7,6 +7,7 @@ import { cn } from "../../lib/cn"
 import { useRef, useState } from "react";
 import { MovieCredits, MovieType } from "../../lib/types";
 import ProductionCompanies from "./ProductionCompanies";
+import Title from "./Title";
 const CrewDetails = ({ details, credits }: { details: MovieType, credits: MovieCredits }) => {
     const [isBeginning, setIsBeginning] = useState(true);
     const [isEnd, setIsEnd] = useState(false);
@@ -24,20 +25,18 @@ const CrewDetails = ({ details, credits }: { details: MovieType, credits: MovieC
         <section className={cn("xl:max-w-[109rem] xl:mx-auto md:mx-20 mx-5 py-15 md:space-y-10 space-y-8",
         )}>
             <div className="space-y-5">
-                <div className="flex items-stretch gap-2">
-                    <span className="lg:w-1.5 w-1 rounded-full bg-blue-600"></span>
-                    <h1 className="capitalize lg:text-2xl md:text-xl text-lg"><strong>overview :</strong></h1>
-                </div>
+                <Title>
+                    overview :
+                </Title>
                 <p className="lg:text-lg text-sm max-md:text-justify font-medium md:mx-6 mx-4 lg:max-w-5xl text-gray-400">
                     {details.overview}
                 </p>
             </div>
             {(details.created_by?.length > 0 || credits.crew?.filter(item => item.job === "Director")?.length > 0) &&
                 <div className="space-y-5">
-                    <div className="flex items-stretch gap-2">
-                        <span className="lg:w-1.5 w-1 rounded-full bg-blue-600"></span>
-                        <h1 className="capitalize lg:text-2xl md:text-xl text-lg"><strong>directed by :</strong></h1>
-                    </div>
+                    <Title>
+                        directed by :
+                    </Title>
                     <div className="flex gap-x-10 gap-y-5 mx-4 flex-wrap">
                         {
                             details.created_by && details.created_by.length > 0
@@ -95,10 +94,9 @@ const CrewDetails = ({ details, credits }: { details: MovieType, credits: MovieC
             {credits.cast?.length > 0 &&
                 <div className="space-y-5">
                     <div className="flex justify-between items-center">
-                        <div className="flex items-stretch gap-2">
-                            <span className="lg:w-1.5 w-1 rounded-full bg-blue-600"></span>
-                            <h1 className="capitalize lg:text-2xl md:text-xl text-lg"><strong>actors :</strong></h1>
-                        </div>
+                        <Title>
+                            actors :
+                        </Title>
                         <div className="flex gap-4 items-start">
                             <button disabled={isBeginning} ref={prevRef} className={cn("hover:bg-slate-600/30 active:bg-slate-600/50 p-3 rounded-full cursor-pointer duration-300",
                                 isBeginning && "cursor-not-allowed"

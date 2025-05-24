@@ -4,6 +4,7 @@ import ReactPlayer from "react-player/youtube";
 import { Trailer, TrailerProps } from "../../lib/types";
 import { VITE_APP_API_KEY } from "../../lib/data";
 import { BiVideoRecording } from "react-icons/bi";
+import Title from "./Title";
 
 const TrailerPlayer: React.FC<TrailerProps> = ({ id, type }) => {
     const [trailerKey, setTrailerKey] = useState<string | null>(null);
@@ -51,10 +52,9 @@ const TrailerPlayer: React.FC<TrailerProps> = ({ id, type }) => {
 
     return (
         <div className="xl:max-w-[109rem] xl:mx-auto md:mx-20 mx-5 md:space-y-10 space-y-8">
-            <div className="flex items-stretch gap-2">
-                <span className="lg:w-1.5 w-1 rounded-full bg-blue-600"></span>
-                <h1 className="capitalize lg:text-2xl md:text-xl text-lg"><strong>trailer</strong></h1>
-            </div>
+            <Title>
+                trailer
+            </Title>
             {trailerKey ?
                 loading ? (
                     <div className="flex flex-col items-center justify-center h-full">

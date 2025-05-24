@@ -6,6 +6,7 @@ import { useRef, useState } from "react"
 import useMediaQuery from "../../features/UseMediaQuery"
 import SwiperCore from 'swiper'
 import { MovieType } from "../../lib/types"
+import Title from "./Title"
 const ProductionCompanies = ({ details }: { details: MovieType }) => {
     const [isBeginning, setIsBeginning] = useState(true);
     const [isEnd, setIsEnd] = useState(false);
@@ -26,10 +27,9 @@ const ProductionCompanies = ({ details }: { details: MovieType }) => {
 
                 <div className="space-y-5">
                     <div className="flex justify-between items-center">
-                        <div className="flex items-stretch gap-2">
-                            <span className="lg:w-1.5 w-1 rounded-full bg-blue-600"></span>
-                            <h1 className="capitalize lg:text-2xl md:text-xl text-lg"><strong>production companies :</strong></h1>
-                        </div>
+                        <Title>
+                            production companies :
+                        </Title>
                         <div className="flex gap-4 items-start">
                             <button disabled={isBeginning} ref={prevRef} className={cn("hover:bg-slate-600/30 active:bg-slate-600/50 p-3 rounded-full cursor-pointer duration-300",
                                 isBeginning && "cursor-not-allowed"

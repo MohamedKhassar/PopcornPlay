@@ -9,6 +9,7 @@ import useMediaQuery from "../../features/UseMediaQuery";
 import SwiperCore from "swiper";
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
 import { cn } from "../../lib/cn";
+import Title from "./Title";
 interface RelatedProps {
     genreIds: number[];
     currentId: number;
@@ -48,10 +49,9 @@ const RelatedItems: React.FC<RelatedProps> = ({ genreIds, currentId, type }) => 
     return (
         <div className="xl:max-w-[109rem] xl:mx-auto md:mx-20 mx-5 md:space-y-10 space-y-8 md:mt-10 mt-8">
             <div className="flex justify-between items-center">
-                <div className="flex items-stretch gap-2">
-                    <span className="lg:w-1.5 w-1 rounded-full bg-blue-600"></span>
-                    <h1 className="capitalize lg:text-2xl md:text-xl text-lg"><strong>related {type == "tv" ? "series" : "Movies"} :</strong></h1>
-                </div>
+                <Title>
+                    related {type == "tv" ? "series" : "Movies"} :
+                </Title>
                 <div className="flex gap-4 items-start">
                     <button disabled={isBeginning} ref={prevRef} className={cn("hover:bg-slate-600/30 active:bg-slate-600/50 p-3 rounded-full  duration-300",
                         isBeginning ? "cursor-not-allowed" : "cursor-pointer"
