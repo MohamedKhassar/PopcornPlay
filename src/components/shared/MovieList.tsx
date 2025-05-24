@@ -9,7 +9,7 @@ import { useNavigate } from "react-router-dom";
 import SwiperCore from 'swiper';
 import { cn } from "../../lib/cn";
 
-const MovieList = ({ category, movies, type }: { category: string, type: string, movies: MovieType[] }) => {
+const MovieList = ({ category, movies, type, loading }: { category?: string, type: string, movies: MovieType[], loading?: boolean }) => {
   const nextRef = useRef(null);
   const prevRef = useRef(null);
   const [isBeginning, setIsBeginning] = useState(true);
@@ -54,7 +54,7 @@ const MovieList = ({ category, movies, type }: { category: string, type: string,
         effect="fade"
       >
         {
-          movies.length === 0 ?
+          movies.length === 0 && loading ?
             Array.from({ length: 5 }).map((_, i) => (
               <SwiperSlide key={i}>
                 <div className="h-100 rounded-xl skeleton-shimmer" />

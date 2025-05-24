@@ -97,7 +97,12 @@ export const fetchMovieDetails = createAsyncThunk(
 const movieSlice = createSlice({
   name: "movies",
   initialState,
-  reducers: {},
+  reducers: {
+    clearMovieDetails: (state) => {
+      state.movies.movieDetails = { details: {} as MovieType, credits: {} as MovieCredits };
+      state.error = null;
+    }
+  },
   extraReducers: (builder) => {
     builder
       .addCase(fetchPopularMovies.pending, (state) => {
@@ -157,5 +162,5 @@ const movieSlice = createSlice({
       })
   },
 });
-
+export const { clearMovieDetails } = movieSlice.actions;
 export default movieSlice.reducer;

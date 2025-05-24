@@ -1,7 +1,7 @@
 import { useEffect } from "react"
-import { useNavigate, useParams } from "react-router-dom"
+import { useLocation, useNavigate, useParams } from "react-router-dom"
 import MoviePost from "../sections/Movie/MoviePost"
-import { fetchMovieDetails } from "../../features/movieSlice"
+import { clearMovieDetails, fetchMovieDetails } from "../../features/movieSlice"
 import { useAppDispatch, useAppSelector } from "../../lib/hooks"
 import { BiChevronLeft } from "react-icons/bi"
 import CrewDetails from "../shared/CrewDetails"
@@ -12,6 +12,7 @@ const MovieDetails = () => {
     const { id } = useParams()
     const { status, movies } = useAppSelector(state => state.movies)
     const dispatch = useAppDispatch()
+    const { pathname } = useLocation()
 
     useEffect(() => {
         try {
@@ -21,6 +22,9 @@ const MovieDetails = () => {
 
         }
     }, [id])
+    useEffect(() => {
+        dispatch(clearMovieDetails())
+    }, [pathname])
     const nav = useNavigate()
     return (
         <>
@@ -39,7 +43,7 @@ const MovieDetails = () => {
                 }
                 <CrewDetails {...movies.movieDetails} />
                 <TrailerPlayer id={movies.movieDetails.details.id} type="movie" />
-                <RelatedItems genres={movies.movieDetails.details.genres?.map(item=>item.id)} currentId={movies.movieDetails.details.id} type="movie" />
+                <RelatedItems genres={movies.movieDetails.details.genres?.map(item => item.id)} currentId={movies.movieDetails.details.id} type="movie" />
             </main>
         </>
     )

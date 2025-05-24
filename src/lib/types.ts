@@ -8,7 +8,7 @@ export type NavItemProps = {
 };
 
 export type MovieType = {
-  production_companies:ProductionCompany[]
+  production_companies: ProductionCompany[];
   runtime: number;
   adult: boolean;
   backdrop_path: string;
@@ -17,7 +17,7 @@ export type MovieType = {
     id: number;
     name: string;
   }[];
-  created_by:CrewMember[]
+  created_by: CrewMember[];
   id: number;
   original_language: string;
   original_title: string;
@@ -32,7 +32,7 @@ export type MovieType = {
   name: string;
   last_air_date: string;
   first_air_date: string;
-  in_production:boolean
+  in_production: boolean;
 };
 
 export type GenreType = {
@@ -83,7 +83,7 @@ export interface Trailer {
 }
 
 export interface TrailerProps {
-  id: number;          // movie or TV show ID
+  id: number; // movie or TV show ID
   type: "movie" | "tv"; // which type it is
 }
 
@@ -92,4 +92,9 @@ export interface ProductionCompany {
   logo_path: string | null;
   name: string;
   origin_country: string;
+}
+
+export interface SearchResultType extends MovieType {
+  media_type: "movie" | "tv";
+  profile_path?: string;
 }

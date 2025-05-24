@@ -1,7 +1,7 @@
 import { useEffect } from "react"
-import { useNavigate, useParams } from "react-router-dom"
+import { useLocation, useNavigate, useParams } from "react-router-dom"
 import { useAppDispatch, useAppSelector } from "../../lib/hooks"
-import { fetchSeriesDetails } from "../../features/SeriesSlice"
+import { clearSerieDetails, fetchSeriesDetails } from "../../features/SeriesSlice"
 import { BiChevronLeft } from "react-icons/bi"
 import SeriePost from "../sections/TV/SeriePost"
 import CrewDetails from "../shared/CrewDetails"
@@ -14,10 +14,16 @@ const SerieDetails = () => {
     const { id } = useParams()
     const { status, series } = useAppSelector(state => state.series)
     const dispatch = useAppDispatch()
+    const { pathname } = useLocation()
+    const nav = useNavigate()
+
     useEffect(() => {
         if (id) dispatch(fetchSeriesDetails(id))
     }, [id])
-    const nav = useNavigate()
+
+    useEffect(() => {
+        dispatch(clearSerieDetails())
+    }, [pathname])
 
     return (
         <main className="lg:h-lvh md:h-dvh h-svh relative">
@@ -30,7 +36,7 @@ const SerieDetails = () => {
             }
             <CrewDetails {...series.seriesDetails} />
             <TrailerPlayer id={series.seriesDetails.details.id} type="tv" />
-            <RelatedItems genres={series.seriesDetails.details.genres?.map(item=>item.id)} currentId={series.seriesDetails.details.id} type="tv" />
+            <RelatedItems genres={series.seriesDetails.details.genres?.map(item => item.id)} currentId={series.seriesDetails.details.id} type="tv" />
 
         </main>
     )

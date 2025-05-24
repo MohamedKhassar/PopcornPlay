@@ -1,6 +1,6 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
-import {  MovieCredits, MovieType } from "../lib/types";
+import { MovieCredits, MovieType } from "../lib/types";
 import { VITE_APP_API_KEY } from "../lib/data";
 
 const initialState: {
@@ -80,7 +80,12 @@ export const fetchOnTheAirSeries = createAsyncThunk("series/fetchOnTheAirSeries"
 const seriesSlice = createSlice({
     name: "series",
     initialState,
-    reducers: {},
+    reducers: {
+        clearSerieDetails: (state) => {
+            state.series.seriesDetails = { details: {} as MovieType, credits: {} as MovieCredits };
+            state.error = null;
+        }
+    },
     extraReducers: (builder) => {
         builder
             .addCase(fetchPopularSeries.pending, (state) => {
@@ -130,4 +135,5 @@ const seriesSlice = createSlice({
     },
 });
 
+export const { clearSerieDetails } = seriesSlice.actions;
 export default seriesSlice.reducer;
