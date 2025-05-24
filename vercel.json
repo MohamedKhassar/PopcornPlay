@@ -9,7 +9,7 @@
           "value": "(googlebot|bingbot|yahoo|baiduspider|facebookexternalhit|twitterbot|linkedinbot)"
         }
       ],
-      "destination": "https://service.prerender.io/$1"
+      "destination": "https://service.prerender.io/https://popcornplay-lyart.vercel.app/$1"
     }
   ],
   "headers": [
