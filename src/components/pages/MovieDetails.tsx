@@ -7,6 +7,7 @@ import { BiChevronLeft } from "react-icons/bi"
 import CrewDetails from "../shared/CrewDetails"
 import TrailerPlayer from "../shared/TrailerPlayer"
 import RelatedItems from "../shared/RelatedItems"
+import MetaData from "../shared/MetaData"
 const MovieDetails = () => {
     const { id } = useParams()
     const { status, movies } = useAppSelector(state => state.movies)
@@ -22,22 +23,25 @@ const MovieDetails = () => {
     }, [id])
     const nav = useNavigate()
     return (
-        <main className="h-screen relative">
-            <button onClick={() => nav(-1)} className="absolute top-28 left-10 bg-white/30 backdrop-blur-2xl rounded-full p-1 hover:bg-white/40 duration-300 cursor-pointer z-40">
-                <BiChevronLeft className="size-8" />
+        <>
+            <MetaData description={`Watch ${movies.movieDetails.details.title} — ${movies.movieDetails.details.overview?.slice(0, 120)}...`} image={`https://image.tmdb.org/t/p/original${movies.movieDetails.details.poster_path}`} title={`PopcornPlay - ${movies.movieDetails.details.title}`} />
+            <main className="h-screen relative">
+                <button onClick={() => nav(-1)} className="absolute top-28 left-10 bg-white/30 backdrop-blur-2xl rounded-full p-1 hover:bg-white/40 duration-300 cursor-pointer z-40">
+                    <BiChevronLeft className="size-8" />
 
-            </button>
-            {status == "succeeded" ?
-                <MoviePost movie={movies.movieDetails} />
-                :
-                <section className="h-full">
-                    <div className="size-full rounded-xl skeleton-shimmer" />
-                </section>
-            }
-            <CrewDetails {...movies.movieDetails} />
-            <TrailerPlayer id={movies.movieDetails.details.id} type="movie" />
-            <RelatedItems genreIds={movies.movieDetails.details.genre_ids} currentId={movies.movieDetails.details.id} type="movie" />
-        </main>
+                </button>
+                {status == "succeeded" ?
+                    <MoviePost movie={movies.movieDetails} />
+                    :
+                    <section className="h-full">
+                        <div className="size-full rounded-xl skeleton-shimmer" />
+                    </section>
+                }
+                <CrewDetails {...movies.movieDetails} />
+                <TrailerPlayer id={movies.movieDetails.details.id} type="movie" />
+                <RelatedItems genreIds={movies.movieDetails.details.genre_ids} currentId={movies.movieDetails.details.id} type="movie" />
+            </main>
+        </>
     )
 }
 

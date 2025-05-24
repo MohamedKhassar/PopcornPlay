@@ -7,6 +7,7 @@ import SeriePost from "../sections/TV/SeriePost"
 import CrewDetails from "../shared/CrewDetails"
 import TrailerPlayer from "../shared/TrailerPlayer"
 import RelatedItems from "../shared/RelatedItems"
+import MetaData from "../shared/MetaData"
 
 
 const SerieDetails = () => {
@@ -20,6 +21,7 @@ const SerieDetails = () => {
 
     return (
         <main className="lg:h-lvh md:h-dvh h-svh relative">
+            <MetaData description={`Watch ${series.seriesDetails.details.name} — ${series.seriesDetails.details.overview?.slice(0, 120)}...`} image={`https://image.tmdb.org/t/p/original${series.seriesDetails.details.poster_path}`} title={`PopcornPlay - ${series.seriesDetails.details.name}`} />
             <button onClick={() => nav(-1)} className="absolute top-28 left-10 bg-white/30 backdrop-blur-2xl rounded-full p-1 hover:bg-white/40 duration-300 cursor-pointer z-40">
                 <BiChevronLeft className="size-8" />
             </button>
