@@ -5,6 +5,7 @@ import 'swiper/swiper-bundle.css';
 import { useEffect } from "react";
 import MovieDetails from "./components/pages/MovieDetails";
 import SerieDetails from "./components/pages/SerieDetails";
+import Search from "./components/pages/Search";
 const App = () => {
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
@@ -51,6 +52,7 @@ const App = () => {
         <Route element={<Home />} path="/" />
         <Route element={<MovieDetails />} path="/movie/:id" />
         <Route element={<SerieDetails />} path="/serie/:id" />
+        <Route element={<Search />} path="/search" />
       </Routes>
     </Layout>
   )
