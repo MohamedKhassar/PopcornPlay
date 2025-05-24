@@ -1,15 +1,4 @@
 {
-  "headers": [
-    {
-      "source": "/(.*)",
-      "headers": [
-        {
-          "key": "x-prerender-token",
-          "value": "RwnDkleVcQ532rIB9Fb6"
-        }
-      ]
-    }
-  ],
   "rewrites": [
     {
       "source": "/(.*)",
@@ -17,14 +6,21 @@
         {
           "type": "header",
           "key": "user-agent",
-          "value": "(?i)(googlebot|bingbot|yandex|baiduspider|facebookexternalhit|twitterbot|linkedinbot|whatsapp)"
+          "value": "(googlebot|bingbot|yahoo|baiduspider|facebookexternalhit|twitterbot|linkedinbot)"
         }
       ],
-      "destination": "https://service.prerender.io/https://popcornplay-lyart.vercel.app/:1"
-    },
+      "destination": "https://service.prerender.io/$1"
+    }
+  ],
+  "headers": [
     {
       "source": "/(.*)",
-      "destination": "/index.html"
+      "headers": [
+        {
+          "key": "X-Prerender-Token",
+          "value": "RwnDkleVcQ532rIB9Fb6"
+        }
+      ]
     }
   ]
 }
