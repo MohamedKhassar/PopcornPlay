@@ -39,7 +39,7 @@ const MovieDetails = () => {
                 }
                 <CrewDetails {...movies.movieDetails} />
                 <TrailerPlayer id={movies.movieDetails.details.id} type="movie" />
-                <RelatedItems genreIds={movies.movieDetails.details.genre_ids} currentId={movies.movieDetails.details.id} type="movie" />
+                <RelatedItems genres={movies.movieDetails.details.genres?.map(item=>item.id)} currentId={movies.movieDetails.details.id} type="movie" />
             </main>
         </>
     )

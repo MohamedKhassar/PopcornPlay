@@ -30,7 +30,7 @@ const SerieDetails = () => {
             }
             <CrewDetails {...series.seriesDetails} />
             <TrailerPlayer id={series.seriesDetails.details.id} type="tv" />
-            <RelatedItems genreIds={series.seriesDetails.details.genre_ids} currentId={series.seriesDetails.details.id} type="tv" />
+            <RelatedItems genres={series.seriesDetails.details.genres?.map(item=>item.id)} currentId={series.seriesDetails.details.id} type="tv" />
 
         </main>
     )

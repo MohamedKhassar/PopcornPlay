@@ -11,13 +11,14 @@ import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
 import { cn } from "../../lib/cn";
 import Title from "./Title";
 interface RelatedProps {
-    genreIds: number[];
+    genres: number[];
     currentId: number;
     type: "movie" | "tv";
 }
 
-const RelatedItems: React.FC<RelatedProps> = ({ genreIds, currentId, type }) => {
+const RelatedItems: React.FC<RelatedProps> = ({ genres, currentId, type }) => {
     const [related, setRelated] = useState<MovieType[]>([]);
+    const [loading, setLoading] = useState(true);
     const nextRef = useRef(null);
     const prevRef = useRef(null);
     const [isBeginning, setIsBeginning] = useState(true);
@@ -34,18 +35,20 @@ const RelatedItems: React.FC<RelatedProps> = ({ genreIds, currentId, type }) => 
     };
     useEffect(() => {
         const fetchRelated = async () => {
+            setLoading(true);
             const res = await axios.get(`https://api.themoviedb.org/3/discover/${type}`, {
                 params: {
                     api_key: VITE_APP_API_KEY,
-                    with_genres: genreIds,
+                    with_genres: genres?.join(","),
                     sort_by: "popularity.desc",
                 },
             });
             setRelated(res.data.results.filter((item: MovieType) => item.id !== currentId));
             window.scrollTo({ top: 0, behavior: "smooth" });
+            setLoading(false);
         };
         fetchRelated();
-    }, [genreIds, currentId, type]);
+    }, [genres, currentId, type]);
     return (
         <div className="xl:max-w-[109rem] xl:mx-auto md:mx-20 mx-5 md:space-y-10 space-y-8 md:mt-10 mt-8">
             <div className="flex justify-between items-center">
@@ -75,7 +78,7 @@ const RelatedItems: React.FC<RelatedProps> = ({ genreIds, currentId, type }) => 
                 effect="fade"
             >
 
-                {related?.map((item) => (
+                {!loading ? related?.map((item) => (
                     <SwiperSlide>
                         <a
                             href={`/${type === "tv" ? "serie" : "movie"}/${item.id}`}
@@ -85,7 +88,13 @@ const RelatedItems: React.FC<RelatedProps> = ({ genreIds, currentId, type }) => 
 
 
                     </SwiperSlide>
-                ))}
+                )) :
+                    Array.from({ length: 5 }).map((_, i) => (
+                        <SwiperSlide key={i}>
+                            <div className="h-100 rounded-xl skeleton-shimmer" />
+                        </SwiperSlide>
+                    ))
+                }
             </Swiper>
         </div>
     );
