@@ -13,7 +13,7 @@ const MoviePost = ({ serie }: { serie: { details: MovieType, credits?: MovieCred
         }
     };
     return (
-        <>
+        <div className="h-lg:h-lvh md:h-dvh h-svh">
             <img loading='lazy' src={serie.details.backdrop_path?`https://image.tmdb.org/t/p/original${serie.details.backdrop_path}`:"https://img.freepik.com/premium-photo/minimal-light-color-gradient-background_558873-54605.jpg?w=1380"} className="object-center object-cover size-full" alt={serie.details.title} />
             <div className=" bg-gradient-to-t from-black/50 from-80% to-transparent inset-0 absolute flex items-end px-10 xl:py-20 py-10 h-full">
                 <div className="flex gap-4 xl:max-w-3xl lg:max-w-xl max-w-fit items-center">
@@ -56,7 +56,7 @@ const MoviePost = ({ serie }: { serie: { details: MovieType, credits?: MovieCred
             </div>
 
 
-        </>
+        </div>
     )
 }
 

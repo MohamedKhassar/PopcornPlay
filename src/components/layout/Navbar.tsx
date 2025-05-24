@@ -11,7 +11,7 @@ const Navbar = () => {
     const {isOpen}=useAppSelector(state=>state.menu)
     const dispatch=useAppDispatch()
     return (
-        <header className="bg-slate-900/10 backdrop-blur-sm lg:py-4 py-2 flex items-center justify-around fixed w-full z-50 lg:top-0">
+        <header className="bg-slate-900/10 backdrop-blur-sm lg:py-4 py-2 flex items-center justify-around fixed w-full z-50 top-0">
             <Link to={""} className="flex items-center">
                 <img src={logo} alt={logo} loading="lazy" className="size-15" />
                 <h1 className="text-2xl font-extrabold hidden lg:block">Popcorn<span className="text-blue-600">Play</span></h1>

@@ -26,7 +26,7 @@ const SerieDetails = () => {
     }, [pathname])
 
     return (
-        <main className="lg:h-lvh md:h-dvh h-svh relative">
+        <main>
             <MetaData description={`Watch ${series.seriesDetails.details.name} — ${series.seriesDetails.details.overview?.slice(0, 120)}...`} image={`https://image.tmdb.org/t/p/original${series.seriesDetails.details.backdrop_path}`} title={`PopcornPlay - ${series.seriesDetails.details.name}`} url={`https://popcornplay-lyart.vercel.app/serie/${series.seriesDetails.details.id}`} />
             <button onClick={() => nav(-1)} className="absolute top-28 left-10 bg-white/30 backdrop-blur-2xl rounded-full p-1 hover:bg-white/40 duration-300 cursor-pointer z-40">
                 <BiChevronLeft className="size-8" />
@@ -37,7 +37,6 @@ const SerieDetails = () => {
             <CrewDetails {...series.seriesDetails} />
             <TrailerPlayer id={series.seriesDetails.details.id} type="tv" />
             <RelatedItems genres={series.seriesDetails.details.genres?.map(item => item.id)} currentId={series.seriesDetails.details.id} type="tv" />
-
         </main>
     )
 }

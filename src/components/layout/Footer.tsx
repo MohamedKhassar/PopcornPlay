@@ -3,7 +3,7 @@ import logo from "/imgs/logo.png"
 
 const Footer = () => {
     return (
-        <footer className='bg-blue-950 rounded-t-2xl lg:py-6 py-4 px-10 flex flex-wrap items-center lg:justify-between justify-center gap-4 w-full mt-10'>
+        <footer className='bg-blue-950 rounded-t-2xl lg:py-6 py-4 px-10 flex flex-wrap items-center md:justify-between justify-center gap-4 w-full mt-5 relative'>
             <Link to={""} className="flex items-center">
                 <img src={logo} alt={logo} loading="lazy" className="lg:size-15 size-10" />
                 <h1 className="text-2xl font-extrabold">Popcorn<span className="text-blue-600">Play</span></h1>
