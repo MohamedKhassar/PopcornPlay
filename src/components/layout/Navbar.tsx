@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom"
-import logo from "/imgs/logo.svg"
+import logo from "/imgs/logo.png"
 import SearchInput from "../shared/SearchInput"
 import NavLinks from "../shared/NavLinks"
 import { TiThMenu } from "react-icons/ti"
