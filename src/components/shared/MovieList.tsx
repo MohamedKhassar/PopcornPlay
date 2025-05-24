@@ -25,7 +25,7 @@ const MovieList = ({ category, movies, type, loading }: { category?: string, typ
     setIsEnd(swiper.isEnd);
   };
   return (
-    <main className="max-w-screen-2xl lg:mx-auto mx-9 lg:mb-20 mb-2 space-y-3">
+    <main className="max-w-screen-2xl lg:mx-auto mx-9 space-y-3">
       <section className="flex justify-between items-center">
         <div className="flex flex-col">
           <h1 className="lg:text-2xl text-blue-400 font-extrabold capitalize">{category}</h1>

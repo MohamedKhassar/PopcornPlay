@@ -13,7 +13,7 @@ const Footer = () => {
                     &copy; {new Date().getFullYear()} <strong className='text-white'>Popcorn<span className='text-blue-600'>Play</span></strong>. All rights reserved.
                 </p>
                 <p className='text-center text-gray-400 lg:test-base text-sm'>
-                    Made with ❤️ by <Link to="" className='text-blue-600 hover:underline' target="_blank">Mohamed Khassar</Link>
+                    Made with ❤️ by <Link to="https://mohamed-khassar.vercel.app" className='text-blue-600 hover:underline' target="_blank">Mohamed Khassar</Link>
                 </p>
             </section>
         </footer>
