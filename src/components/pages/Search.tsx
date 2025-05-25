@@ -9,10 +9,10 @@ const Search = () => {
     const movieResults = query?.filter((item) => item.media_type === "movie").sort((a, b) => b.vote_average - a.vote_average) || [];
     const tvResults = query?.filter((item) => item.media_type === "tv").sort((a, b) => b.vote_average - a.vote_average) || [];
     return (
-        <div className="h-lg:h-lvh md:h-dvh h-svh">
+        <div className="">
             {
                 query.length === 0 ?
-                    <main className="flex items-center justify-center h-full">
+                    <main className="flex items-center justify-center lg:h-lvh md:h-dvh h-svh">
                         <section className="flex justify-center items-center flex-col gap-10 opacity-80 select-none">
                             <h1 className="lg:text-5xl text-3xl font-semibold text-slate-600 capitalize">you can search</h1>
                             <div className="flex justify-center items-center flex-col gap-2">
@@ -22,12 +22,12 @@ const Search = () => {
                         </section>
                     </main>
                     :
-                    <div className="mt-30">
+                    <div className="mt-30 lg:min-h-lvh md:min-h-dvh min-h-svh">
                         {movieResults.length > 0 && (
                             <div className="space-y-10">
                                 <div
                                     className="lg:mx-auto mx-5 lg:max-w-[104rem]"
-                                >
+                                    >
                                     <Title>
                                         Movies List
                                         <LuFilm className="lg:size-7 size-5" />
@@ -41,7 +41,7 @@ const Search = () => {
                             <div className="space-y-10">
                                 <div
                                     className="lg:mx-auto mx-5 lg:max-w-[104rem]"
-                                >
+                                    >
                                     <Title>
                                         TV Series List
                                         <BiTv className="lg:size-9 size-5" />
@@ -52,7 +52,7 @@ const Search = () => {
                         )}
 
                         {movieResults.length === 0 && tvResults.length === 0 && (
-                            <div className="text-center text-gray-400 my-20 text-lg">
+                            <div className="text-center text-gray-400 lg:text-2xl text-lg flex items-center justify-center">  
                                 No results found. Please try a different keyword.
                             </div>
                         )}
