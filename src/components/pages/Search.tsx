@@ -5,14 +5,14 @@ import MovieList from "../shared/MovieList"
 import { useAppSelector } from "../../lib/hooks"
 
 const Search = () => {
-    const { query ,loading} = useAppSelector(state => state.query)
+    const { query, loading } = useAppSelector(state => state.query)
     const movieResults = query?.filter((item) => item.media_type === "movie").sort((a, b) => b.vote_average - a.vote_average) || [];
     const tvResults = query?.filter((item) => item.media_type === "tv").sort((a, b) => b.vote_average - a.vote_average) || [];
     return (
-        <>
+        <div className="h-lg:h-lvh md:h-dvh h-svh">
             {
                 query.length === 0 ?
-                    <main className="h-screen flex items-center justify-center">
+                    <main className="flex items-center justify-center h-full">
                         <section className="flex justify-center items-center flex-col gap-10 opacity-80 select-none">
                             <h1 className="lg:text-5xl text-3xl font-semibold text-slate-600 capitalize">you can search</h1>
                             <div className="flex justify-center items-center flex-col gap-2">
@@ -58,7 +58,7 @@ const Search = () => {
                         )}
                     </div>
             }
-        </>
+        </div>
     )
 }
 
