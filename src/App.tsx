@@ -1,4 +1,4 @@
-import { Route, Routes } from "react-router-dom"
+import { Route, Routes, useLocation } from "react-router-dom"
 import Layout from "./components/layout/Layout"
 import Home from "./components/pages/Home"
 import 'swiper/swiper-bundle.css';
@@ -7,9 +7,10 @@ import MovieDetails from "./components/pages/MovieDetails";
 import SerieDetails from "./components/pages/SerieDetails";
 import Search from "./components/pages/Search";
 const App = () => {
+  const { pathname } = useLocation()
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.key === 'f' || e.key === 'F') {
+      if ((e.key === 'f' || e.key === 'F') && !pathname.includes("search")) {
         if (!document.fullscreenElement) {
           document.documentElement.requestFullscreen()
             .then(() => {
@@ -45,7 +46,7 @@ const App = () => {
       document.body.style.overflow = 'auto';
       document.documentElement.style.overflow = 'auto';
     };
-  }, []);
+  }, [pathname]);
   return (
     <Layout>
       <Routes>
