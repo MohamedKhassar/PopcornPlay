@@ -13,7 +13,7 @@ const Card: FC<CardProps> = ({ movie, ...rest }) => {
     const colorClass = getRatingColor(movie.vote_average);
     return (
         <div {...rest} className="cursor-pointer space-y-5 hover:bg-slate-600/30 rounded-2xl p-3 duration-200 overflow-hidden lg:max-w-full lg:min-w-full max-w-80 mx-auto select-none">
-            <div className='relative min-h-90 h-fit'>
+            <div className='relative lg:min-h-90 md:min-h-50 h-fit'>
                 <div className='flex justify-center items-center group overflow-hidden rounded-xl
                 '>
                     <img src={`https://image.tmdb.org/t/p/original${movie.poster_path}`} className='rounded-2xl group-hover:scale-105 duration-300' alt="" loading='lazy' />
