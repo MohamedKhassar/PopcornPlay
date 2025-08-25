@@ -1,54 +1,110 @@
-# React + TypeScript + Vite
+<div id="top"></div>
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+<div align="center">
 
-Currently, two official plugins are available:
+# POPCORNPLAY
+*Transforming Entertainment Discovery with Seamless Innovation*
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+![last-commit](https://img.shields.io/github/last-commit/MohamedKhassar/PopcornPlay?style=flat&logo=git&logoColor=white&color=0080ff)
+![repo-top-language](https://img.shields.io/github/languages/top/MohamedKhassar/PopcornPlay?style=flat&color=0080ff)
+![repo-language-count](https://img.shields.io/github/languages/count/MohamedKhassar/PopcornPlay?style=flat&color=0080ff)
 
-## Expanding the ESLint configuration
+*Built with the tools and technologies:*
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+![JSON](https://img.shields.io/badge/JSON-000000.svg?style=flat&logo=JSON&logoColor=white)
+![Markdown](https://img.shields.io/badge/Markdown-000000.svg?style=flat&logo=Markdown&logoColor=white)
+![npm](https://img.shields.io/badge/npm-CB3837.svg?style=flat&logo=npm&logoColor=white)
+![.ENV](https://img.shields.io/badge/.ENV-ECD53F.svg?style=flat&logo=dotenv&logoColor=black)
+![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E.svg?style=flat&logo=JavaScript&logoColor=black)
+![React](https://img.shields.io/badge/React-61DAFB.svg?style=flat&logo=React&logoColor=black)  
+![TypeScript](https://img.shields.io/badge/TypeScript-3178C6.svg?style=flat&logo=TypeScript&logoColor=white)
+![Vite](https://img.shields.io/badge/Vite-646CFF.svg?style=flat&logo=Vite&logoColor=white)
+![ESLint](https://img.shields.io/badge/ESLint-4B32C3.svg?style=flat&logo=ESLint&logoColor=white)
+![Swiper](https://img.shields.io/badge/Swiper-6332F6.svg?style=flat&logo=Swiper&logoColor=white)
+![Axios](https://img.shields.io/badge/Axios-5A29E4.svg?style=flat&logo=Axios&logoColor=white)
+![Redux](https://img.shields.io/badge/Redux-764ABC.svg?style=flat&logo=Redux&logoColor=white)
 
-```js
-export default tseslint.config({
-  extends: [
-    // Remove ...tseslint.configs.recommended and replace with this
-    ...tseslint.configs.recommendedTypeChecked,
-    // Alternatively, use this for stricter rules
-    ...tseslint.configs.strictTypeChecked,
-    // Optionally, add this for stylistic rules
-    ...tseslint.configs.stylisticTypeChecked,
-  ],
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
+</div>
+
+---
+
+## Table of Contents
+- [Overview](#overview)
+- [Getting Started](#getting-started)
+  - [Prerequisites](#prerequisites)
+  - [Installation](#installation)
+  - [Usage](#usage)
+  - [Testing](#testing)
+
+---
+
+## Overview
+
+PopcornPlay is a modern, scalable React boilerplate tailored for building media discovery platforms, such as movie and TV show streaming sites. It combines best practices in code quality, development speed, and user experience to empower developers to create engaging, high-performance web applications.
+
+**Why PopcornPlay?**
+
+This project streamlines the development of media-focused React apps with a robust architecture. The core features include:
+
+- 🛠️ **Code Quality Enforcement:** ESLint configuration ensures consistent, maintainable code aligned with React and modern JavaScript standards.
+- ⚡ **Fast Development Environment:** Vite setup provides instant module hot-reloading and optimized builds for rapid iteration.
+- 🔧 **TypeScript Safety:** Modular configs guarantee strict type safety and compatibility with modern ECMAScript features.
+- 🎬 **Rich Media Components:** Pre-built UI elements like movie cards, trailers, and detailed views accelerate feature development.
+- 📊 **State Management:** Redux slices handle complex data flows for movies, series, genres, and user interactions.
+- 🌐 **SEO & Social Sharing:** Metadata and routing configurations optimize discoverability and user engagement.
+
+---
+
+## Getting Started
+
+### Prerequisites
+
+This project requires the following dependencies:
+
+- **Programming Language:** TypeScript  
+- **Package Manager:** npm  
+
+### Installation
+
+Build PopcornPlay from the source and install dependencies:
+
+1. **Clone the repository:**
+   ```sh
+   git clone https://github.com/MohamedKhassar/PopcornPlay
+   ```
+
+2. **Navigate to the project directory:**
+
+   ```sh
+   cd PopcornPlay
+   ```
+
+3. **Install the dependencies:**
+
+   **Using [npm](https://www.npmjs.com/):**
+
+   ```sh
+   npm install
+   ```
+
+### Usage
+
+Run the project with:
+
+**Using [npm](https://www.npmjs.com/):**
+
+```sh
+npm start
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+### Testing
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+PopcornPlay uses the **{test\_framework}** test framework. Run the test suite with:
 
-export default tseslint.config({
-  plugins: {
-    // Add the react-x and react-dom plugins
-    'react-x': reactX,
-    'react-dom': reactDom,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended typescript rules
-    ...reactX.configs['recommended-typescript'].rules,
-    ...reactDom.configs.recommended.rules,
-  },
-})
+**Using [npm](https://www.npmjs.com/):**
+
+```sh
+npm test
 ```
+
+[⬆ Return](#top)
